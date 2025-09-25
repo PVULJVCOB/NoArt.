@@ -194,6 +194,39 @@
   }
 }
 
+/* Mobile-specific adjustments: stack portrait above text, tighten spacing and font sizes for readability */
+@media (max-width: 768px) {
+  .about-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-lg);
+  }
+
+  .about-visual {
+    order: -1; /* portrait first */
+    width: 92%;
+    max-width: 520px;
+  }
+
+  .about-text {
+    width: 100%;
+    padding: 0 var(--space-md);
+  }
+
+  .text-content p {
+    font-size: 0.98rem; /* slightly smaller on mobile */
+    margin-bottom: calc(var(--space-lg));
+  }
+
+  .about-stats {
+    gap: var(--space-sm);
+    justify-content: flex-start;
+    width: 100%;
+    padding-left: 8px;
+  }
+}
+
 .about .text-content [data-scroll="fade-up"] {
   transition-delay: 0s;
 }

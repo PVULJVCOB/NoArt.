@@ -154,10 +154,21 @@
     gap: var(--space-sm);
   }
 
+  /* Keep nav links on a single row on tablets / phones. Allow horizontal scroll if they overflow. */
   .nav-menu {
     display: flex;
     gap: var(--space-lg);
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    width: 100%;
+    justify-content: flex-start;
+    padding-bottom: 6px;
+    scrollbar-width: thin;
   }
+
+  .nav-menu::-webkit-scrollbar { height: 8px; }
+  .nav-menu::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.06); border-radius: 8px; }
 
   .nav-menu .nav-link {
     display: inline-block;
