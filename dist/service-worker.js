@@ -1,10 +1,10 @@
 const CACHE_NAME = 'noart-shell-v1';
 const ASSETS = [
-  '/noart-index.html',
+  '/index.html',
   '/styles/variables.css',
   '/styles/layout.css',
   '/styles/components.css',
-  '/noart-main.js',
+  '/main.js',
   '/offline.html'
 ];
 

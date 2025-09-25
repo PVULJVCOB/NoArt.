@@ -15,23 +15,23 @@ async function run() {
   await fs.rm(buildDir, { recursive: true, force: true });
   await fs.mkdir(buildDir, { recursive: true });
 
-  // bundle noart-main.js with source map
-  const entry = path.join(root, 'noart-main.js');
+  // bundle main.js with source map
+  const entry = path.join(root, 'main.js');
   if (await exists(entry)) {
-    console.log('Bundling noart-main.js with esbuild...');
+    console.log('Bundling main.js with esbuild...');
     await esbuild.build({
       entryPoints: [entry],
       bundle: true,
       sourcemap: true,
-      outfile: path.join(buildDir, 'noart-main.js'),
+      outfile: path.join(buildDir, 'main.js'),
       legalComments: 'none'
     });
   } else {
-    console.warn('Entry file noart-main.js not found, skipping JS bundle');
+    console.warn('Entry file main.js not found, skipping JS bundle');
   }
 
   // copy static files / directories
-  const staticItems = ['noart-index.html', 'manifest.json', 'offline.html', 'service-worker.js'];
+  const staticItems = ['index.html', 'manifest.json', 'offline.html', 'service-worker.js'];
   for (const item of staticItems) {
     const src = path.join(root, item);
     if (await exists(src)) {

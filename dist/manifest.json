@@ -1,7 +1,7 @@
 {
   "name": "NoArt.",
   "short_name": "NoArt",
-  "start_url": "/noart-index.html",
+  "start_url": "/index.html",
   "display": "standalone",
   "background_color": "#fefdfb",
   "theme_color": "#fefdfb",
