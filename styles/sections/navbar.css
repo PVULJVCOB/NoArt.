@@ -24,7 +24,7 @@
     90deg,
     var(--accent) 0%,
     var(--accent-secondary) 50%,
-    var(--bordeaux) 100%
+    var(--orange) 100%
   );
   width: 0%;
   transition:

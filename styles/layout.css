@@ -41,9 +41,7 @@ body {
     box-shadow: var(--shadow-lg);
 }
 
-.section + .section {
-    margin-top: -1px;
-}
+
 
 .section-content {
     position: relative;
@@ -103,7 +101,6 @@ body {
     background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
     border-radius: 2px;
 }
-
 
 .content-section {
     --section-delay: 0s;
@@ -222,5 +219,3 @@ body {
     transform: scale(1.05);
     filter: grayscale(0) contrast(1.2) brightness(1.1);
 }
-
-

@@ -9,21 +9,6 @@
   padding: var(--space-6xl) var(--space-xl);
 }
 
-.section.about-section::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    45deg,
-    rgb(139 69 19 / 5%) 0%,
-    transparent 30%,
-    rgb(47 79 79 / 3%) 70%,
-    rgb(128 0 32 / 2%) 100%
-  );
-  z-index: 1;
-  pointer-events: none;
-}
-
 .section.about-section .section-content {
   position: relative;
   z-index: 2;

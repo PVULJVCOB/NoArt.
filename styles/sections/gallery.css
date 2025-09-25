@@ -61,20 +61,6 @@
 }
 
 /* Section scaffold overrides for gallery */
-.section.gallery-section::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    135deg,
-    rgb(43 43 43 / 80%) 0%,
-    rgb(43 43 43 / 40%) 50%,
-    rgb(64 64 64 / 60%) 100%
-  );
-  z-index: 1;
-  pointer-events: none;
-}
-
 .section.gallery-section .section-content {
   position: relative;
   z-index: 2;

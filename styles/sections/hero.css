@@ -1,8 +1,13 @@
 .hero-background {
   position: absolute;
   inset: 0;
-  z-index: var(--z-background);
-  opacity: 0.6;
+  /* ensure the background (video) is painted above the section background
+     - var(--z-background) is -1 which places the element behind the section
+       background in some themes (hiding the video). Use 0 so the video sits
+       above the section background but below content/overlay layers. */
+  z-index: 0;
+  /* remove global opacity so the video remains fully visible; overlay handles dimming */
+  opacity: 1;
   filter: blur(1px);
 }
 
@@ -11,7 +16,8 @@
   position: absolute;
   inset: 0;
   background: var(--hero-overlay-dark);
-  z-index: calc(var(--z-background) + 2);
+  /* overlay must sit above the video but below content */
+  z-index: 1;
   pointer-events: none;
 }
 
@@ -22,11 +28,18 @@
   height: 100%;
   object-fit: cover;
   object-position: center center;
-  z-index: calc(var(--z-background) + 1);
+  /* keep video below overlay but above section backgrounds */
+  z-index: 0;
   opacity: 1;
   pointer-events: none;
   filter: brightness(var(--hero-video-brightness))
     contrast(var(--hero-video-contrast));
+}
+
+/* Ensure hero text/content sits above the overlay so text isn't obscured */
+.hero-section .section-content {
+  position: relative;
+  z-index: calc(var(--z-content) + 1);
 }
 
 @media (width <= 640px) {

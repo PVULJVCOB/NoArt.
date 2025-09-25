@@ -14,15 +14,13 @@
 .footer-section::before {
   content: "";
   position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    135deg,
-    rgb(31 31 31 / 90%) 0%,
-    rgb(43 43 43 / 70%) 50%,
-    rgb(17 17 17 / 80%) 100%
-  );
-  z-index: 1;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 56px; /* shadow band from the section above */
   pointer-events: none;
+  z-index: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.45), rgba(0,0,0,0));
 }
 
 .footer-section .section-content {
@@ -31,6 +29,10 @@
   min-height: auto;
   justify-content: flex-start;
   padding: clamp(var(--space-2xl), 3vh, var(--space-4xl)) var(--space-xl);
+  /* transparent container: no backdrop blur or box-shadow */
+  backdrop-filter: none;
+  box-shadow: none;
+  background: transparent;
 }
 
 .footer-content {
@@ -92,6 +94,22 @@
   padding-top: var(--space-xl);
   border-top: 1px solid color-mix(in srgb, var(--fg) 8%, transparent);
   color: var(--fg-muted);
+}
+
+/* Light-theme override: softer shadow so footer blends with light background */
+[data-theme='light'] .footer-section::before {
+  background: linear-gradient(to bottom, rgba(0,0,0,0.08), rgba(0,0,0,0));
+}
+
+/* Dark-theme override: reinforce darker shadow */
+[data-theme='dark'] .footer-section::before {
+  background: linear-gradient(to bottom, rgba(0,0,0,0.6), rgba(0,0,0,0));
+}
+
+@media (prefers-color-scheme: dark) {
+  .footer-section::before {
+    background: linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0));
+  }
 }
 
 @media (width <= 1024px) {
