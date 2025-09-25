@@ -93,6 +93,19 @@
   backdrop-filter: blur(35px) saturate(1.5);
 }
 
+/* Allow JS to control expanded state on touch devices */
+.theme-toggle-float.expanded .theme-toggle-pill {
+  min-width: 160px;
+  box-shadow: 0 8px 32px rgb(0 0 0 / 18%);
+  background: color-mix(in srgb, var(--bg) 75%, transparent);
+  backdrop-filter: blur(35px) saturate(1.5);
+}
+
+.theme-toggle-float.expanded .theme-toggle-pill .theme-desc {
+  opacity: 1;
+  max-width: 120px;
+}
+
 .theme-toggle-pill .theme-desc {
   opacity: 0;
   max-width: 0;

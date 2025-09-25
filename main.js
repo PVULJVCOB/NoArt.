@@ -436,6 +436,14 @@ function enableThemePillAutoCollapse() {
     timer = window.setTimeout(() => pill.classList.remove("expanded"), 2000);
   });
 
+  // Also respond to touchstart explicitly so the pill expands on touch devices
+  pill.addEventListener("touchstart", (e) => {
+    if (e.target && e.target.id === "theme-toggle") return;
+    pill.classList.add("expanded");
+    window.clearTimeout(timer);
+    timer = window.setTimeout(() => pill.classList.remove("expanded"), 2000);
+  });
+
   pill.addEventListener(
     "blur",
     () => {
