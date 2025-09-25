@@ -5,18 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>NoArt. - Minimalistisch. Zeitlos. Authentisch.</title>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Host+Grotesk:wght@300;400;500;600;700;800&display=swap"
-    />
-    <!-- CSS load order: variables -> base/animations -> components -> layout -> modules -> responsive -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Host+Grotesk:wght@300;400;500;600;700;800&display=swap"/>
     <link rel="stylesheet" href="styles/variables.css" />
     <link rel="stylesheet" href="styles/animations.css" />
-    <!-- Canonical motion utilities (keyframes & scroll state) -->
     <link rel="stylesheet" href="styles/motion.css" />
-  <!-- scrollanimation.css consolidated into motion.css -->
     <link rel="stylesheet" href="styles/components.css" />
-    <!-- Section-specific styles (migrated) -->
+    <link rel="stylesheet" href="styles/sections/location.css" />
     <link rel="stylesheet" href="styles/sections/navbar.css" />
     <link rel="stylesheet" href="styles/sections/hero.css" />
     <link rel="stylesheet" href="styles/sections/gallery.css" />
@@ -28,45 +22,29 @@
     <link rel="stylesheet" href="styles/navbar.css" />
     <link rel="stylesheet" href="styles/components/themetoggle.css" />
     <link rel="stylesheet" href="styles/responsive.css" />
-    <meta
-      name="description"
-      content="NoArt. präsentiert minimalistische 3D-Kunst mit eleganten Akzenten. Erleben Sie zeitlose Ästhetik in ihrer reinsten Form."
-    />
-    <!-- Open Graph / Social sharing -->
+    <meta name="description" content="NoArt. präsentiert minimalistische 3D-Kunst mit eleganten Akzenten. Erleben Sie zeitlose Ästhetik in ihrer reinsten Form." />
     <meta property="og:site_name" content="NoArt." />
     <meta property="og:title" content="NoArt. - Minimalistisch. Zeitlos. Authentisch." />
     <meta property="og:description" content="NoArt. präsentiert minimalistische 3D-Kunst mit eleganten Akzenten." />
     <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://www.noart.de/" />
-  <meta property="og:image" content="https://www.noart.de/src/portrait.jpg" />
+    <meta property="og:url" content="https://www.noart.de/" />
+    <meta property="og:image" content="https://www.noart.de/src/portrait.jpg" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="NoArt. - Minimalistisch. Zeitlos. Authentisch." />
     <meta name="twitter:description" content="NoArt. präsentiert minimalistische 3D-Kunst mit eleganten Akzenten." />
-  <meta name="twitter:image" content="https://www.noart.de/src/portrait.jpg" />
-    <meta
-      name="theme-color"
-      content="#fefdfb"
-      media="(prefers-color-scheme: light)"
-    />
-    <meta
-      name="theme-color"
-      content="#1a1a1a"
-      media="(prefers-color-scheme: dark)"
-    />
-    <!-- Note: Contact form posts to /api/contact when deployed (Vercel/Netlify serverless). See .env.example for env vars. -->
+    <meta name="twitter:image" content="https://www.noart.de/src/portrait.jpg" />
+    <meta name="theme-color" content="#fefdfb" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)" />
     <link rel="stylesheet" href="styles/consent.css" />
-  <link rel="stylesheet" href="styles/update.css" />
+    <link rel="stylesheet" href="styles/update.css" />
     <link rel="manifest" href="/manifest.json" />
-  <!-- Favicons / PWA icons -->
-  <link rel="icon" href="/icons/icon-192.svg" type="image/svg+xml" />
-  <link rel="apple-touch-icon" href="/icons/icon-192.svg" />
-  <!-- PNG fallbacks (replace with production PNGs) -->
-  <link rel="icon" href="/icons/icon-192.png" sizes="192x192" />
-  <link rel="icon" href="/icons/icon-512.png" sizes="512x512" />
+    <link rel="icon" href="/icons/icon-192.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/icons/icon-192.svg" />
+    <link rel="icon" href="/icons/icon-192.png" sizes="192x192" />
+    <link rel="icon" href="/icons/icon-512.png" sizes="512x512" />
   </head>
   <body>
     <a href="#main-content" class="skip-link">Zum Hauptinhalt springen</a>
-
     <!-- Navigation -->
     <nav class="navbar" id="navbar">
       <a href="#home" class="nav-logo">NoArt.</a>
@@ -84,10 +62,9 @@
           <a href="#contact" class="nav-link" data-text="Contact">Contact</a>
         </li>
       </ul>
-
       <div class="navbar-progress"></div>
     </nav>
-
+    <!-- Theme Toggle -->
     <aside class="theme-region" role="region" aria-label="Theme wechseln">
       <div class="theme-toggle-float" tabindex="0">
         <div class="theme-toggle-pill">
@@ -109,7 +86,7 @@
         </div>
       </div>
     </aside>
-
+    <!-- Main Content -->
     <main id="main-content">
       <section class="section hero-section" id="home">
         <div class="hero-background">

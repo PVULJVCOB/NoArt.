@@ -220,3 +220,45 @@
 .about .text-content [data-scroll="fade-up"]:nth-of-type(3) {
   transition-delay: 0.24s;
 }
+
+
+.stat-item {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    padding: var(--space-lg);
+    border-radius: var(--radius-md);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    text-align: center;
+    /* use fluid sizing to adapt to small/large viewports */
+    width: min(150px, 20vw);
+    height: auto;
+    aspect-ratio: 170 / 200;
+    justify-content: center;
+    align-items: center;
+    transition: transform var(--transition-base), background var(--transition-base), box-shadow var(--transition-base);
+}
+
+.stat-item:hover {
+    transform: translateY(-3px);
+    background: #363636;
+    box-shadow: var(--shadow-md);
+}
+
+.stat-label {
+    color: var(--fg-muted);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: var(--space-sm);
+}
+
+.card {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+    box-shadow: var(--shadow-sm);
+}

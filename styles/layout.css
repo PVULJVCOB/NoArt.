@@ -1,4 +1,3 @@
-
 html {
     font-size: 16px;
     scroll-behavior: smooth;
@@ -105,20 +104,7 @@ body {
     border-radius: 2px;
 }
 
-.section-subtitle {
-    font-size: var(--font-size-xl);
-    color: var(--fg-muted);
-    max-width: 600px;
-    margin: 0 0 var(--space-2xl) 0;
-    line-height: var(--line-height-relaxed);
-    font-weight: var(--font-weight-normal);
-}
 
-
-/* Use custom property for section entrance delay so DOM order changes do not break sequencing.
-   Set per-section delay via the --section-delay property (fallback 0s).
-   Server/CMS or build step can add inline style="--section-delay: .2s" where required.
-*/
 .content-section {
     --section-delay: 0s;
     animation-delay: var(--section-delay);
@@ -165,26 +151,6 @@ body {
     margin-bottom: var(--space-xl);
     color: var(--fg);
     text-align: center;
-}
-
-
-
-.map-embed {
-    width: 100%;
-    aspect-ratio: 1 / 1;
-    max-height: 720px;
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    box-shadow: var(--shadow-lg);
-    display: block;
-}
-
-.map-embed iframe {
-    width: 100%;
-    height: 100%;
-    border: 0;
-    display: block;
-    object-fit: cover;
 }
 
 .content-section__image {
@@ -257,98 +223,4 @@ body {
     filter: grayscale(0) contrast(1.2) brightness(1.1);
 }
 
-.location-content,
-.contact-content {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--space-4xl);
-    align-items: center;
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-}
 
-.info-block,
-.contact-item {
-    margin-bottom: var(--space-2xl);
-    text-align: left;
-    max-width: 400px;
-    width: 100%;
-}
-
-.info-block h3,
-.contact-item h3 {
-    font-size: var(--font-size-2xl);
-    font-weight: var(--font-weight-semibold);
-    color: var(--color-accent-1);
-    margin-bottom: var(--space-lg);
-}
-
-.info-block p,
-.contact-item a {
-    color: var(--fg);
-    line-height: var(--line-height-relaxed);
-    text-decoration: none;
-    font-size: var(--font-size-lg);
-}
-
-.contact-item a:hover {
-    color: var(--color-accent-1);
-    transition: color var(--transition-base);
-}
-
-.contact-form {
-    background: linear-gradient(135deg, rgb(47 79 79 / 15%), rgb(139 69 19 / 10%));
-    padding: var(--space-2xl);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-lg);
-    border: 1px solid rgb(139 69 19 / 20%);
-}
-
-.form-group {
-    position: relative;
-    margin-bottom: var(--space-xl);
-}
-
-
-.stat-item {
-    background: var(--bg-elevated);
-    border: 1px solid var(--border);
-    padding: var(--space-lg);
-    border-radius: var(--radius-md);
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-sm);
-    text-align: center;
-    /* use fluid sizing to adapt to small/large viewports */
-    width: min(150px, 20vw);
-    height: auto;
-    aspect-ratio: 170 / 200;
-    justify-content: center;
-    align-items: center;
-    transition: transform var(--transition-base), background var(--transition-base), box-shadow var(--transition-base);
-}
-
-
-.stat-item:hover {
-    transform: translateY(-3px);
-    background: #363636;
-    box-shadow: var(--shadow-md);
-}
-
-.stat-label {
-    color: var(--fg-muted);
-    font-size: var(--font-size-sm);
-    font-weight: var(--font-weight-medium);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    margin-top: var(--space-sm);
-}
-
-.card {
-    background: var(--bg-elevated);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
-    padding: var(--space-lg);
-    box-shadow: var(--shadow-sm);
-}

@@ -27,4 +27,21 @@
     transition-delay: 0.24s;
 }
 
+
+.contact-info [data-scroll="fade-up"] {
+  transition-delay: 0s;
+}
+
+.contact-info [data-scroll="fade-up"]:nth-of-type(2) {
+  transition-delay: 0.12s;
+}
+
+.contact-info [data-scroll="fade-up"]:nth-of-type(3) {
+  transition-delay: 0.24s;
+}
+
+.contact-form[data-scroll="fade-up"] {
+  transition-delay: 0.3s;
+}
+
 /* Focus/skip-link styles are centralized in styles/components.css */
