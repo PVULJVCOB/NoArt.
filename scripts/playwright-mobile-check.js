@@ -1,0 +1,69 @@
+(async () => {
+  const { chromium, devices } = require('playwright');
+  const iPhone = devices['iPhone 12'];
+  const browser = await chromium.launch();
+  const context = await browser.newContext({ ...iPhone });
+  const page = await context.newPage();
+  const url = 'https://pvuljvcob.github.io/NoArt./';
+  console.log('navigating to', url);
+  await page.goto(url, { waitUntil: 'networkidle' });
+  await page.waitForTimeout(1000);
+
+  const locOrder = await page.evaluate(() => {
+    const header = document.querySelector('.location-section .section-header');
+    if (!header) return { error: 'no header' };
+    const content = document.querySelector('.location-section .location-content');
+    if (!content) return { error: 'no location-content' };
+    const first = content.children[0];
+    const second = content.children[1];
+    return {
+      firstClass: first ? first.className : null,
+      secondClass: second ? second.className : null,
+      mapIndex: Array.from(content.children).findIndex(c => c.classList && c.classList.contains('location-map')),
+      infoIndex: Array.from(content.children).findIndex(c => c.classList && c.classList.contains('location-info'))
+    };
+  });
+  console.log('location order check:', locOrder);
+
+  const aboutOrder = await page.evaluate(() => {
+    const about = document.querySelector('.about-section .about-content');
+    if (!about) return { error: 'no about' };
+    return { children: Array.from(about.children).map(c => c.className) };
+  });
+  console.log('about children order:', aboutOrder);
+
+  const statsCenter = await page.evaluate(() => {
+    const stats = document.querySelector('.about-stats');
+    if (!stats) return { error: 'no stats' };
+    const style = getComputedStyle(stats);
+    return { justifyContent: style.justifyContent };
+  });
+  console.log('about-stats justifyContent:', statsCenter);
+
+  const themePillPresent = await page.$('.theme-toggle-float');
+  console.log('theme pill present?', !!themePillPresent);
+  if (themePillPresent) {
+    await page.touchscreen.tap(10, 10); // small tap to ensure focus
+    // tap the pill
+    const rect = await page.evaluate(() => {
+      const el = document.querySelector('.theme-toggle-float');
+      if (!el) return null;
+      const r = el.getBoundingClientRect();
+      return { x: Math.floor(r.left + r.width / 2), y: Math.floor(r.top + r.height / 2) };
+    });
+    if (rect) {
+      await page.touchscreen.tap(rect.x, rect.y);
+      await page.waitForTimeout(800);
+      const expanded = await page.evaluate(() => !!document.querySelector('.theme-toggle-float.expanded'));
+      console.log('theme pill expanded after tap?', expanded);
+    } else {
+      console.log('could not compute theme pill rect');
+    }
+  }
+
+  // screenshot for manual inspection
+  await page.screenshot({ path: 'playwright-mobile-snapshot.png', fullPage: false });
+  console.log('screenshot written to playwright-mobile-snapshot.png');
+
+  await browser.close();
+})();

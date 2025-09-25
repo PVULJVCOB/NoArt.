@@ -51,6 +51,12 @@
     align-items: center; /* center the contact blocks visually on mobile */
     text-align: center;
   }
+
+  /* Ensure the info-blocks are visible even if scroll animations set initial opacity/transform */
+  .location-info .info-block {
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }
 
 /* Tighten on very small screens */

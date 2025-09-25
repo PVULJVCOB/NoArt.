@@ -226,6 +226,8 @@
     justify-content: flex-start;
     width: 100%;
     padding-left: 8px;
+    justify-content: center; /* center stats on mobile */
+    padding-left: 0;
   }
 }
 
