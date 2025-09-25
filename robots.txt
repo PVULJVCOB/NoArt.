@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://www.noart.de/sitemap.xml
+User-agent: *
+Allow: /
+Sitemap: /sitemap.xml

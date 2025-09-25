@@ -1,0 +1,40 @@
+{
+  "name": "noart-website",
+  "version": "0.1.0",
+  "private": true,
+  "description": "NoArt. static website tooling",
+  "main": "noart-main.js",
+  "scripts": {
+    "lint": "eslint . --ext .js,.html",
+    "format": "prettier --write \"**/*.{js,css,html,json,md}\"",
+  "prepare": "husky install || true",
+    "sitemap": "node scripts/generate-sitemap.js",
+  "build": "vite build",
+  "dev": "vite",
+  "preview": "vite preview",
+    "start": "npx serve -s . -l 5000",
+    "dev:functions": "netlify dev",
+  "test:e2e": "npx playwright test --config=playwright.config.js",
+  "test:e2e:ci": "npx playwright install && npx playwright test --config=playwright.config.js",
+  "ci:e2e": "npm run build && (npm run preview &) && npx wait-on http://localhost:5173 && npm run test:e2e:ci",
+  "strip-sourcemaps": "node scripts/strip-sourcemaps.js",
+  "verify-sourcemaps": "node scripts/verify-sourcemaps.js",
+    "test:e2e:headed": "PWDEBUG=1 npx playwright test --config=playwright.config.js"
+  },
+  "lint-staged": {
+    "*.{js,css,html}": [
+      "prettier --write",
+      "eslint --fix"
+    ]
+  }
+
+  ,"dependencies": {
+    "ioredis": "^5.3.2"
+  }
+  ,"devDependencies": {
+    "esbuild": "^0.18.18",
+    "vite": "^5.0.0",
+    "wait-on": "^7.0.1"
+  }
+
+}

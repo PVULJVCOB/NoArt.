@@ -1,0 +1,102 @@
+.footer-section {
+  background: linear-gradient(
+    180deg,
+    var(--color-dark) 0%,
+    var(--color-dark) 100%
+  );
+  position: relative;
+  min-height: 100vh;
+  padding: clamp(var(--space-3xl), 6vh, var(--space-5xl)) 0;
+  overflow: auto;
+  box-sizing: border-box;
+}
+
+.footer-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgb(31 31 31 / 90%) 0%,
+    rgb(43 43 43 / 70%) 50%,
+    rgb(17 17 17 / 80%) 100%
+  );
+  z-index: 1;
+  pointer-events: none;
+}
+
+.footer-section .section-content {
+  position: relative;
+  z-index: 2;
+  min-height: auto;
+  justify-content: flex-start;
+  padding: clamp(var(--space-2xl), 3vh, var(--space-4xl)) var(--space-xl);
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: var(--space-4xl);
+  margin-bottom: var(--space-2xl);
+  width: 100%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.footer-brand p {
+  color: var(--fg-muted);
+  margin-top: var(--space-sm);
+}
+
+.footer-links {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-2xl);
+}
+
+.footer-column h4 {
+  color: var(--color-accent-1);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  margin-bottom: var(--space-lg);
+}
+
+.footer-column ul {
+  list-style: none;
+}
+
+.footer-column li {
+  margin-bottom: var(--space-sm);
+}
+
+.footer-column a {
+  color: var(--fg-muted);
+  text-decoration: none;
+  transition: color var(--transition-base);
+}
+
+.footer-column a:hover {
+  color: var(--color-accent-1);
+}
+
+.footer-logo {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--fg);
+  text-decoration: none;
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: var(--space-xl);
+  border-top: 1px solid color-mix(in srgb, var(--fg) 8%, transparent);
+  color: var(--fg-muted);
+}
+
+@media (width <= 1024px) {
+  .footer-content {
+    grid-template-columns: 1fr;
+    gap: var(--space-2xl);
+  }
+}

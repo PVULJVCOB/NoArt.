@@ -1,0 +1,363 @@
+
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizelegibility;
+}
+
+body {
+    font-family: var(--font-family);
+    font-weight: var(--font-weight-normal);
+    line-height: var(--line-height-normal);
+    color: var(--fg);
+    background-color: var(--bg);
+    overflow-x: hidden;
+    min-height: 100vh;
+    transition: background-color var(--transition-base), color var(--transition-base);
+}
+
+.content-section__text p {
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+    color: var(--fg-muted);
+    text-align: left;
+    max-width: 90%;
+    margin: 0 auto;
+}
+
+.section {
+    position: relative;
+    min-height: 100vh;
+    /* use percentage to avoid horizontal overflow when scrollbars or transforms appear */
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+}
+
+.section + .section {
+    margin-top: -1px;
+}
+
+.section-content {
+    position: relative;
+    z-index: var(--z-content);
+    width: 100%;
+    margin: 0;
+    padding: var(--space-5xl) var(--space-xl);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+
+.section-header {
+    text-align: left;
+    margin-bottom: var(--space-4xl);
+    width: 100%;
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.8s cubic-bezier(0.165, 0.84, 0.44, 1), transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+    margin-top: 0;
+}
+
+.section-header.in-view {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.section-title {
+    font-size: var(--font-size-5xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--fg);
+    margin-bottom: var(--space-2xl);
+    position: relative;
+    line-height: var(--line-height-tight);
+    letter-spacing: -0.02em;
+    text-shadow: 0 1px 3px rgb(0 0 0 / 10%);
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 120px;
+    height: 3px;
+    background: linear-gradient(90deg, #c0c0c0, #a9a9a9);
+    border-radius: 2px;
+    box-shadow: 0 1px 2px rgb(0 0 0 / 10%);
+}
+
+.section-subtitle {
+    font-size: var(--font-size-xl);
+    color: var(--fg-muted);
+    max-width: 600px;
+    margin: 0 0 var(--space-2xl) 0;
+    line-height: var(--line-height-relaxed);
+    font-weight: var(--font-weight-normal);
+}
+
+
+/* Use custom property for section entrance delay so DOM order changes do not break sequencing.
+   Set per-section delay via the --section-delay property (fallback 0s).
+   Server/CMS or build step can add inline style="--section-delay: .2s" where required.
+*/
+.content-section {
+    --section-delay: 0s;
+    animation-delay: var(--section-delay);
+}
+
+.content-section:nth-child(1) { --section-delay: 0.2s; }
+.content-section:nth-child(2) { --section-delay: 0.4s; }
+.content-section:nth-child(3) { --section-delay: 0.6s; }
+.content-section:nth-child(4) { --section-delay: 0.8s; }
+
+@supports (height: 100svh) {
+    .footer-section {
+        height: 100svh;
+        min-height: 100svh;
+    }
+}
+
+.content-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--space-5xl);
+    padding: var(--space-6xl) var(--space-xl);
+    min-height: 90vh;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.content-section.reversed {
+    flex-direction: row-reverse;
+}
+
+.content-section__text {
+    flex: 1;
+    max-width: 500px;
+    text-align: center;
+    padding: var(--space-2xl);
+}
+
+.content-section__text h2 {
+    font-size: var(--font-size-4xl);
+    font-weight: var(--font-weight-bold);
+    margin-bottom: var(--space-xl);
+    color: var(--fg);
+    text-align: center;
+}
+
+
+
+.map-embed {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    max-height: 720px;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+    display: block;
+}
+
+.map-embed iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
+    object-fit: cover;
+}
+
+.content-section__image {
+    flex: 1;
+    max-width: none;
+    aspect-ratio: 3 / 2;
+    border-radius: var(--radius-lg);
+    /* only transition properties that actually animate */
+    transition: transform var(--transition-slow), box-shadow var(--transition-slow);
+    position: relative;
+    overflow: hidden;
+    background: var(--bg-muted);
+}
+
+.content-section__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-slow), filter var(--transition-slow);
+    filter: grayscale(0.2) contrast(1.1);
+}
+
+.content-section__image::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        45deg,
+        transparent 30%,
+        rgb(192 192 192 / 15%) 50%,
+        rgb(169 169 169 / 12%) 70%,
+        transparent
+    );
+    opacity: 0;
+    transition: opacity var(--transition-base);
+    z-index: 2;
+}
+
+.content-section__image::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: radial-gradient(180deg, rgb(111 111 111 / 20%), transparent);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width var(--transition-slow), height var(--transition-slow);
+    z-index: 1;
+}
+
+.content-section__image:hover::before {
+    opacity: 1;
+}
+
+.content-section__image:hover::after {
+    width: 300px;
+    height: 300px;
+}
+
+
+.content-section__image:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: var(--shadow-xl), 0 0 40px rgb(27 27 27 / 20%);
+}
+
+.content-section__image:hover img {
+    transform: scale(1.05);
+    filter: grayscale(0) contrast(1.2) brightness(1.1);
+}
+
+.location-content,
+.contact-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-4xl);
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.info-block,
+.contact-item {
+    margin-bottom: var(--space-2xl);
+    text-align: left;
+    max-width: 400px;
+    width: 100%;
+}
+
+.info-block h3,
+.contact-item h3 {
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-accent-1);
+    margin-bottom: var(--space-lg);
+}
+
+.info-block p,
+.contact-item a {
+    color: var(--fg);
+    line-height: var(--line-height-relaxed);
+    text-decoration: none;
+    font-size: var(--font-size-lg);
+}
+
+.contact-item a:hover {
+    color: var(--color-accent-1);
+    transition: color var(--transition-base);
+}
+
+.contact-form {
+    background: linear-gradient(135deg, rgb(47 79 79 / 15%), rgb(139 69 19 / 10%));
+    padding: var(--space-2xl);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    border: 1px solid rgb(139 69 19 / 20%);
+}
+
+.form-group {
+    position: relative;
+    margin-bottom: var(--space-xl);
+}
+
+
+.stat-item {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    padding: var(--space-lg);
+    border-radius: var(--radius-md);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    text-align: center;
+    /* use fluid sizing to adapt to small/large viewports */
+    width: min(150px, 20vw);
+    height: auto;
+    aspect-ratio: 170 / 200;
+    justify-content: center;
+    align-items: center;
+    transition: transform var(--transition-base), background var(--transition-base), box-shadow var(--transition-base);
+}
+
+
+.stat-item:hover {
+    transform: translateY(-3px);
+    background: #363636;
+    box-shadow: var(--shadow-md);
+}
+
+.stat-label {
+    color: var(--fg-muted);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: var(--space-sm);
+}
+
+.card {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+    box-shadow: var(--shadow-sm);
+}
+
+/* Respect reduced motion preferences: minimize animations/transitions */
+@media (prefers-reduced-motion: reduce) {
+    .content-section,
+    .content-section__image,
+    .section-header,
+    .stat-item,
+    .card {
+        transition-duration: 0.001ms;
+        animation-duration: 0.001ms;
+        transform: none;
+    }
+
+    .content-section__image img {
+        transition-duration: 0.001ms;
+    }
+}
