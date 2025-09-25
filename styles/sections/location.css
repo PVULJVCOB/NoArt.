@@ -37,10 +37,10 @@
   }
 
   .location-map {
-    order: -1; /* put map above text */
-    width: 90vw; /* take ~90% of the viewport width */
-    max-width: 900px;
-    margin: 0 auto 0.75rem auto;
+    order: -1 !important; /* force map above text */
+    width: 90vw !important; /* take ~90% of the viewport width */
+    max-width: 900px !important;
+    margin: 0 auto 0.75rem auto !important;
   }
 
   .location-info {
@@ -56,6 +56,8 @@
   .location-info .info-block {
     opacity: 1 !important;
     transform: none !important;
+    display: block !important;
+    visibility: visible !important;
   }
 }
 

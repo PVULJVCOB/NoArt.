@@ -25,6 +25,21 @@
   });
   console.log('location order check:', locOrder);
 
+  // compute visual positions for map and info (boundingClientRect)
+  const locVisual = await page.evaluate(() => {
+    const map = document.querySelector('.location-section .location-map');
+    const info = document.querySelector('.location-section .location-info');
+    if (!map || !info) return { error: 'missing map or info' };
+    const m = map.getBoundingClientRect();
+    const i = info.getBoundingClientRect();
+    return {
+      mapTop: Math.round(m.top),
+      infoTop: Math.round(i.top),
+      mapAboveInfo: m.top < i.top
+    };
+  });
+  console.log('location visual positions:', locVisual);
+
   const aboutOrder = await page.evaluate(() => {
     const about = document.querySelector('.about-section .about-content');
     if (!about) return { error: 'no about' };
