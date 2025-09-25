@@ -35,7 +35,8 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: github-pages
-      url: https://$GITHUB_REPOSITORY_OWNER.github.io/${{ github.event.repository.name }}
+      # Use GitHub Actions expressions for owner and repository name
+      url: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}
 
     steps:
       - name: Deploy to GitHub Pages

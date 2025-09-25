@@ -17,9 +17,7 @@
     <link rel="stylesheet" href="styles/sections/about.css" />
     <link rel="stylesheet" href="styles/sections/contact.css" />
     <link rel="stylesheet" href="styles/sections/footer.css" />
-    <link rel="stylesheet" href="styles/layout.css" />
-    <link rel="stylesheet" href="styles/hero.css" />
-    <link rel="stylesheet" href="styles/navbar.css" />
+  <link rel="stylesheet" href="styles/layout.css" />
     <link rel="stylesheet" href="styles/components/themetoggle.css" />
     <link rel="stylesheet" href="styles/responsive.css" />
     <meta name="description" content="NoArt. präsentiert minimalistische 3D-Kunst mit eleganten Akzenten. Erleben Sie zeitlose Ästhetik in ihrer reinsten Form." />
@@ -550,14 +548,16 @@
     <script src="scripts/consent.js" defer></script>
     <script>
       if ('serviceWorker' in navigator) {
-        window.addEventListener('load', function () {
-          navigator.serviceWorker.register('/service-worker.js').then(function (reg) {
-            console.log('ServiceWorker registration successful with scope: ', reg.scope);
-          }, function (err) {
-            console.log('ServiceWorker registration failed: ', err);
+          window.addEventListener('load', function () {
+            // Use a relative path so the service worker registers correctly
+            // whether the site is served from root or a repo subpath.
+            navigator.serviceWorker.register('service-worker.js').then(function (reg) {
+              console.log('ServiceWorker registration successful with scope: ', reg.scope);
+            }, function (err) {
+              console.log('ServiceWorker registration failed: ', err);
+            });
           });
-        });
-      }
+        }
     </script>
     <script async defer src="https://plausible.io/js/plausible.js"></script>
     <script>
