@@ -81,3 +81,9 @@ Environment variable best-practices
 - Example `ALLOWED_ORIGINS` value (comma-separated): `https://www.noart.de,https://noart.gallery`
 - `REDIS_URL` should point to a production Redis instance (e.g. `redis://:password@hostname:6379/0`) if you enable cross-instance rate-limiting.
 - Keep `RECAPTCHA_SECRET`, `SENDGRID_API_KEY` and `SENTRY_DSN` in secrets and not in `.env` that is committed.
+
+Additional GitHub Pages notes
+----------------------------
+- This repository includes a workflow at `.github/workflows/deploy-pages.yml` which builds the site and publishes the `dist` directory to GitHub Pages using the official `upload-pages-artifact` and `deploy-pages` actions.
+- After the first successful run you can verify Pages settings in the repository Settings → Pages. To use a custom domain, add a `CNAME` file at the repo root with your domain (or configure it in the Pages UI) and ensure DNS points to GitHub Pages as explained above.
+
