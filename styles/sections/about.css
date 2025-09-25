@@ -78,6 +78,15 @@
 }
 
 .placeholder-about-image {
+  
+  /* Mobile: tighten gap and center the stats row */
+  .about-stats {
+    display: flex;
+    gap: var(--space-sm) !important;
+    justify-content: center !important;
+    align-items: center;
+    flex-wrap: wrap;
+  }
   width: 100%;
   aspect-ratio: 3 / 4;
   /* increase max width so portrait appears larger now that stats are smaller */

@@ -29,11 +29,20 @@
 
 /* On narrow screens make the map stack above the info and center it */
 @media (max-width: 1024px) {
+  /* Force stacked layout for the location content on narrow viewports.
+     Use a more specific selector so this wins over the global grid rule. */
+  .section.location-section .section-content .location-content {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: var(--space-md) !important;
+    grid-template-columns: unset !important;
+    grid-auto-flow: unset !important;
+  }
+  /* clear any grid layout that may be declared later in the cascade */
   .location-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: var(--space-md);
+    grid-template-columns: unset !important;
+    grid-auto-flow: unset !important;
   }
 
   .location-map {
@@ -52,12 +61,30 @@
     text-align: center;
   }
 
+  /* Disable parallax transforms for the location section on small screens
+     because the JS parallax can push the map down visually; we want the
+     map to appear directly under the header in media mode. */
+  .location-section .parallax-wrapper,
+  .location-section .parallax-wrapper > * {
+    transform: none !important;
+    transition: none !important;
+    will-change: auto !important;
+  }
+
   /* Ensure the info-blocks are visible even if scroll animations set initial opacity/transform */
   .location-info .info-block {
     opacity: 1 !important;
     transform: none !important;
     display: block !important;
     visibility: visible !important;
+  }
+
+  /* Remove the full-viewport constraint for this section on smaller screens
+     so the header sits naturally above the stacked map + info. */
+  .section.location-section .section-content {
+    min-height: auto !important;
+    padding-top: var(--space-3xl) !important;
+    padding-bottom: var(--space-3xl) !important;
   }
 }
 

@@ -40,6 +40,41 @@
   });
   console.log('location visual positions:', locVisual);
 
+  // Extra diagnostics: computed styles and offsets to find what's shifting layout
+  const locDiagnostics = await page.evaluate(() => {
+    const map = document.querySelector('.location-section .location-map');
+    const info = document.querySelector('.location-section .location-info');
+    const getDiag = (el) => {
+      if (!el) return null;
+      const cs = getComputedStyle(el);
+      const rect = el.getBoundingClientRect();
+      return {
+        tag: el.tagName.toLowerCase(),
+        className: el.className,
+        position: cs.position,
+        transform: cs.transform,
+        marginTop: cs.marginTop,
+        marginBottom: cs.marginBottom,
+        top: cs.top,
+        bottom: cs.bottom,
+        offsetTop: el.offsetTop,
+        offsetParent: (el.offsetParent && el.offsetParent.tagName) || null,
+        rectTop: Math.round(rect.top),
+        rectHeight: Math.round(rect.height)
+      };
+    };
+    const parent = document.querySelector('.location-section .location-content');
+    const parentCS = parent ? getComputedStyle(parent) : null;
+    return {
+      parentDisplay: parentCS ? parentCS.display : null,
+      parentPosition: parentCS ? parentCS.position : null,
+      map: getDiag(map),
+      info: getDiag(info),
+      siblings: parent ? Array.from(parent.children).map(c => ({class: c.className, tag: c.tagName.toLowerCase()})) : null
+    };
+  });
+  console.log('location diagnostics:', JSON.stringify(locDiagnostics, null, 2));
+
   const aboutOrder = await page.evaluate(() => {
     const about = document.querySelector('.about-section .about-content');
     if (!about) return { error: 'no about' };
