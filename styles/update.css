@@ -1,16 +1,33 @@
-/* Small update toast */
+/* Update toast: style aligned with site design variables */
 .update-toast {
   position: fixed;
   left: 50%;
   transform: translateX(-50%);
-  bottom: 1.5rem;
-  background: rgba(17,17,17,0.95);
-  color: #fff;
-  padding: 10px 14px;
-  border-radius: 30px;
+  bottom: var(--space-lg, 1.5rem);
+  background: var(--color-dark, rgba(17,17,17,0.95));
+  color: var(--color-bg, #fff);
+  padding: var(--space-sm, 8px) var(--space-md, 14px);
+  border-radius: var(--radius-xl, 30px);
   display: flex;
-  gap: 8px;
+  gap: var(--space-sm, 8px);
   align-items: center;
-  z-index: 10000;
+  z-index: var(--z-toast, 10000);
+  box-shadow: var(--shadow-lg, 0 10px 30px rgba(0,0,0,0.4));
+  font-family: var(--font-family, inherit);
+  font-size: var(--font-size-base, 1rem);
 }
-.update-button { background: #fff; color:#111; border-radius:6px; padding:6px 10px; border:none; cursor:pointer }
+
+/* Make the update button visually consistent with CTA styles (light button on dark background) */
+.update-toast .update-button {
+  background: var(--color-bg, #fff);
+  color: var(--color-dark, #111);
+  border-radius: var(--radius-sm, 6px);
+  padding: var(--space-xs, 6px) var(--space-sm, 10px);
+  border: none;
+  cursor: pointer;
+  font-weight: var(--font-weight-medium, 600);
+}
+
+.update-toast .update-button:hover {
+  opacity: 0.95;
+}

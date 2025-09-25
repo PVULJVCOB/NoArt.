@@ -352,20 +352,3 @@ body {
     padding: var(--space-lg);
     box-shadow: var(--shadow-sm);
 }
-
-/* Respect reduced motion preferences: minimize animations/transitions */
-@media (prefers-reduced-motion: reduce) {
-    .content-section,
-    .content-section__image,
-    .section-header,
-    .stat-item,
-    .card {
-        transition-duration: 0.001ms;
-        animation-duration: 0.001ms;
-        transform: none;
-    }
-
-    .content-section__image img {
-        transition-duration: 0.001ms;
-    }
-}
