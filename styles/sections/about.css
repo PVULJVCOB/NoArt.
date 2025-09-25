@@ -204,7 +204,7 @@
   }
 
   .about-visual {
-    order: -1; /* portrait first */
+    order: 1; /* portrait after text+stats on mobile */
     width: 92%;
     max-width: 520px;
   }
