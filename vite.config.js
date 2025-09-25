@@ -7,18 +7,33 @@ function copyStatic() {
   return {
     name: 'copy-static',
     closeBundle() {
-      const filesToCopy = ['service-worker.js', 'manifest.json', 'offline.html']
+      // Files and directories to copy into dist so they are available at runtime
+      const toCopy = ['service-worker.js', 'manifest.json', 'offline.html', 'main.js', 'styles', 'scripts']
       const iconDir = 'icons'
       const outDir = resolve(process.cwd(), 'dist')
 
       if (!fs.existsSync(outDir)) return
 
-      for (const f of filesToCopy) {
-        const src = resolve(process.cwd(), f)
-        const dest = resolve(outDir, f)
-        if (fs.existsSync(src)) {
+      // recursive copy helper
+      function copyRecursive(src, dest) {
+        const st = fs.statSync(src)
+        if (st.isDirectory()) {
+          fs.mkdirSync(dest, { recursive: true })
+          for (const name of fs.readdirSync(src)) {
+            copyRecursive(resolve(src, name), resolve(dest, name))
+          }
+        } else {
+          // Ensure parent dir exists
+          fs.mkdirSync(resolve(dest, '..'), { recursive: true })
           fs.copyFileSync(src, dest)
         }
+      }
+
+      for (const p of toCopy) {
+        const src = resolve(process.cwd(), p)
+        const dest = resolve(outDir, p)
+        if (!fs.existsSync(src)) continue
+        copyRecursive(src, dest)
       }
 
       const srcIconDir = resolve(process.cwd(), iconDir)
@@ -46,7 +61,9 @@ const emitSourcemapInCI = (() => {
 
 export default defineConfig({
   root: '.',
-  base: '/',
+  // Allow overriding the base path at build time via BASE_URL env var.
+  // Example: BASE_URL=/NoArt./ npm run build
+  base: process.env.BASE_URL || '/',
     build: {
       outDir: 'dist',
       // Emit source maps so CI can upload them to Sentry (see scripts/sentry-upload.sh)

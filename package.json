@@ -18,8 +18,9 @@
   "test:e2e": "npx playwright test --config=playwright.config.js",
   "test:e2e:ci": "npx playwright install && npx playwright test --config=playwright.config.js",
   "ci:e2e": "npm run build && (npm run preview &) && npx wait-on http://localhost:5173 && npm run test:e2e:ci",
-  "strip-sourcemaps": "node scripts/strip-sourcemaps.js",
+    "strip-sourcemaps": "node scripts/strip-sourcemaps.js",
   "verify-sourcemaps": "node scripts/verify-sourcemaps.js",
+    "deploy:gh-pages": "npm run build && sh scripts/deploy-gh-pages.sh",
     "test:e2e:headed": "PWDEBUG=1 npx playwright test --config=playwright.config.js"
   },
   "lint-staged": {
