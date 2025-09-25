@@ -166,8 +166,24 @@
 
 @media (width <= 480px) {
   .navbar {
-    padding: var(--space-sm) var(--space-md);
+    padding: 0.35rem 0.75rem; /* tighten vertical padding on small phones */
     gap: var(--space-xs);
+    min-height: 44px; /* avoid oversized navbar on very small screens */
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-logo {
+    font-size: 1.125rem; /* reduce logo size */
+  }
+
+  .nav-menu {
+    gap: 0.5rem;
+  }
+
+  .nav-menu .nav-link {
+    font-size: 0.85rem;
+    padding: 0.25rem 0.5rem;
   }
 }
 
