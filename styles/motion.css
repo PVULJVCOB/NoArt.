@@ -1,0 +1,148 @@
+
+@keyframes background-shift {
+    0%, 100% {
+        transform: scale(1) rotate(0deg);
+        filter: blur(1px) hue-rotate(0deg);
+    }
+
+    25% {
+        transform: scale(1.05) rotate(1deg);
+        filter: blur(2px) hue-rotate(10deg);
+    }
+
+    50% {
+        transform: scale(1.02) rotate(-1deg);
+        filter: blur(1.5px) hue-rotate(-5deg);
+    }
+
+    75% {
+        transform: scale(1.08) rotate(0.5deg);
+        filter: blur(2.5px) hue-rotate(15deg);
+    }
+}
+
+@keyframes hero-glow {
+    0%, 100% {
+        text-shadow: 0 0 20px rgb(139 69 19 / 30%);
+    }
+
+    50% {
+        text-shadow: 0 0 40px rgb(47 79 79 / 40%), 0 0 60px rgb(128 0 32 / 20%);
+    }
+}
+
+@keyframes gallery-intro-entrance { to { opacity: 1; transform: translateY(0); } }
+
+@keyframes title-shimmer {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+@keyframes section-entrance { to { opacity: 1; transform: translateY(0); } }
+
+@keyframes float {
+    0%, 100% { transform: translateY(0) rotateX(0); }
+    50% { transform: translateY(-20px) rotateX(10deg); }
+}
+
+@keyframes hero-fade-in { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+
+@keyframes hero-float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+
+@keyframes hero-line-in { from { opacity: 0; transform: translateY(60px); } to { opacity: 1; transform: translateY(0); } }
+
+@keyframes artwork-float {
+    0%,100% { transform: translateY(0) rotateY(-15deg) rotateX(5deg); }
+    50% { transform: translateY(-15px) rotateY(-10deg) rotateX(3deg); }
+}
+
+@keyframes rotate-3d { from { transform: rotateX(0) rotateY(0); } to { transform: rotateX(360deg) rotateY(360deg); } }
+
+@keyframes indicator-float { 0%,100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(-5px); } }
+
+@keyframes scroll-pulse { 0%,100% { opacity: 0.5; } 50% { opacity: 1; } }
+
+
+* {
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-scroll] {
+    will-change: transform, opacity;
+}
+
+.scroll-fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.scroll-fade-left.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.scroll-fade-right.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.scroll-init {
+    opacity: 0;
+    transform: translateY(60px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.scroll-init[data-scroll='fade-left'] {
+    transform: translateX(-60px);
+}
+
+.scroll-init[data-scroll='fade-right'] {
+    transform: translateX(60px);
+}
+
+.scroll-init[data-scroll='fade-up'],
+[data-scroll='fade-up'] {
+    transform: translateY(40px);
+    transition: opacity 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Stagger subtitle when paired with a fade-up title or vice-versa */
+[data-scroll='fade-up'] + .section-subtitle,
+.section-title[data-scroll='fade-up'] + [data-scroll='fade-up'] {
+    transition-delay: 0.12s;
+}
+
+[data-scroll*='parallax'] {
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+}
+
+.location-info .info-block[data-scroll='fade-up'] {
+    transition-delay: 0s;
+}
+
+.location-info .info-block[data-scroll='fade-up']:nth-of-type(2) {
+    transition-delay: 0.12s;
+}
+
+.location-info .info-block[data-scroll='fade-up']:nth-of-type(3) {
+    transition-delay: 0.24s;
+}
+
+.parallax-wrapper[aria-hidden='false'] {
+    pointer-events: auto;
+}
+
+.parallax-wrapper {
+    position: relative;
+    overflow: visible;
+    will-change: transform;
+    pointer-events: none;
+}
+
+.parallax-wrapper > * {
+    transform: translate3d(0, 0, 0);
+}
+
+
+/* Focus/skip-link styles are centralized in styles/components.css */
