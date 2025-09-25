@@ -75,3 +75,9 @@ Domain & HTTPS
 Next steps / optional improvements
 - Use Netlify-only hosting if you prefer functions and static assets in one place (connect GitHub repo in Netlify dashboard).
 - Add automated tests that hit the function via Playwright in CI (existing e2e tests are present).
+
+Environment variable best-practices
+- Store secrets in the provider's secure secret store (Netlify/GitHub Actions/Vercel) — never commit them to git.
+- Example `ALLOWED_ORIGINS` value (comma-separated): `https://www.noart.de,https://noart.gallery`
+- `REDIS_URL` should point to a production Redis instance (e.g. `redis://:password@hostname:6379/0`) if you enable cross-instance rate-limiting.
+- Keep `RECAPTCHA_SECRET`, `SENDGRID_API_KEY` and `SENTRY_DSN` in secrets and not in `.env` that is committed.

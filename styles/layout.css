@@ -39,6 +39,7 @@ body {
     padding: 0;
     margin: 0;
     overflow: hidden;
+    box-shadow: var(--shadow-lg);
 }
 
 .section + .section {
@@ -75,26 +76,33 @@ body {
 }
 
 .section-title {
-    font-size: var(--font-size-5xl);
-    font-weight: var(--font-weight-bold);
+    font-size: var(--font-size-6xl);
+    font-weight: var(--font-weight-extrabold);
     color: var(--fg);
-    margin-bottom: var(--space-2xl);
+    margin-bottom: var(--space-lg);
     position: relative;
-    line-height: var(--line-height-tight);
-    letter-spacing: -0.02em;
-    text-shadow: 0 1px 3px rgb(0 0 0 / 10%);
+    -webkit-text-fill-color: transparent;
+    background: linear-gradient(
+        135deg,
+        var(--fg) 0%,
+        var(--accent) 50%,
+        var(--accent-secondary) 100%
+        );
+    background-clip: text;
+    animation: title-shimmer 3s ease-in-out infinite;
+    text-align: center;
 }
 
 .section-title::after {
-    content: '';
+    content: "";
     position: absolute;
-    bottom: -8px;
-    left: 0;
-    width: 120px;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
     height: 3px;
-    background: linear-gradient(90deg, #c0c0c0, #a9a9a9);
+    background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
     border-radius: 2px;
-    box-shadow: 0 1px 2px rgb(0 0 0 / 10%);
 }
 
 .section-subtitle {

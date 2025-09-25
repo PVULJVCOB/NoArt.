@@ -582,5 +582,16 @@
         });
       }
     </script>
+    <script async defer src="https://plausible.io/js/plausible.js"></script>
+    <script>
+      // honeypot
+      document.addEventListener('DOMContentLoaded', function () {
+        var honeypot = document.createElement('input');
+        honeypot.setAttribute('type', 'text');
+        honeypot.setAttribute('name', 'email');
+        honeypot.setAttribute('style', 'display:none');
+        document.body.appendChild(honeypot);
+      });
+    </script>
   </body>
 </html>

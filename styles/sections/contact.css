@@ -59,36 +59,6 @@
   margin-bottom: var(--space-lg);
 }
 
-.section.contact-section .section-title {
-  font-size: var(--font-size-6xl);
-  font-weight: var(--font-weight-extrabold);
-  color: var(--fg);
-  margin-bottom: var(--space-lg);
-  position: relative;
-  -webkit-text-fill-color: transparent;
-  background: linear-gradient(
-    135deg,
-    var(--fg) 0%,
-    var(--accent) 50%,
-    var(--accent-secondary) 100%
-  );
-  background-clip: text;
-  animation: title-shimmer 3s ease-in-out infinite;
-  text-align: center;
-}
-
-.section.contact-section .section-title::after {
-  content: "";
-  position: absolute;
-  bottom: -10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 60px;
-  height: 3px;
-  background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
-  border-radius: 2px;
-}
-
 .section.contact-section .section-subtitle {
   font-size: var(--font-size-xl);
   color: var(--fg-muted);

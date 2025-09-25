@@ -6,17 +6,8 @@
     color-mix(in srgb, var(--bg) 98%, var(--accent)) 0%,
     var(--bg) 100%
   );
-  /* Entrance visibility is driven by the scroll utility.
-     Avoid declaring static opacity/transform/animation here which
-     can override `.visible` / `.scroll-init` rules from the motion
-     utilities and cause one-way behavior when scrolling.
-  */
 }
 
-/* Use the established scroll state classes so the existing JS
-   IntersectionObserver (which toggles `.scroll-init`, `.visible` and
-   `scroll-<type>`) controls entrance behavior for this section.
-*/
 .gallery-intro.scroll-init {
   opacity: 0;
   transform: translateY(60px);
@@ -87,44 +78,4 @@
 .section.gallery-section .section-content {
   position: relative;
   z-index: 2;
-}
-
-.location-section .section-title {
-  /* reuse global unified heading utility (inherit by selector match) */
-  font-size: var(--font-size-6xl);
-  font-weight: var(--font-weight-extrabold);
-  color: var(--fg);
-  margin-bottom: var(--space-lg);
-  position: relative;
-  background: linear-gradient(
-    135deg,
-    var(--fg) 0%,
-    var(--accent) 50%,
-    var(--accent-secondary) 100%
-  );
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: title-shimmer 3s ease-in-out infinite;
-  text-align: center;
-}
-
-.location-section .section-title::after {
-  content: "";
-  position: absolute;
-  bottom: -10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 60px;
-  height: 3px;
-  background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
-  border-radius: 2px;
-}
-
-.location-section .section-subtitle {
-  font-size: var(--font-size-xl);
-  color: var(--fg-muted);
-  font-weight: var(--font-weight-medium);
-  max-width: 600px;
-  margin: 0 auto;
-  line-height: var(--line-height-relaxed);
 }

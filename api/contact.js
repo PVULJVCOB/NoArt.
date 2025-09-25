@@ -15,8 +15,24 @@ if (process.env.SENTRY_DSN) {
   }
 }
 
-// Simple in-memory rate limiter (per-IP). Note: not reliable in serverless (cold starts); use Redis for production.
+// Rate limiter helper (supports Redis via REDIS_URL or an in-memory fallback)
 const { checkAndIncrement } = require('../lib/rateLimiter');
+
+// Allowed origins for CORS (comma-separated env var). If empty, allow all origins (legacy behavior).
+const ALLOWED_ORIGINS = (process.env.ALLOWED_ORIGINS || '').split(',').map(s => s.trim()).filter(Boolean);
+
+// helpers: simple sanitizers/validators
+function stripTags(s) {
+  if (!s) return '';
+  return String(s).replace(/<[^>]*>/g, '').trim();
+}
+
+function isValidEmail(email) {
+  if (!email) return false;
+  // simple email regex (not perfect but sufficient for basic validation)
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
 
 const sendViaSendGrid = async (payload) => {
   const apiKey = process.env.SENDGRID_API_KEY;
@@ -55,15 +71,20 @@ const sendViaSendGrid = async (payload) => {
 };
 
 module.exports = async (req, res) => {
-  // Basic CORS support & preflight
+  // CORS handling: only allow configured origins when provided
+  const origin = req.headers.origin || req.headers.referer || '';
+  let allowOrigin = '*';
+  if (ALLOWED_ORIGINS.length) {
+    if (ALLOWED_ORIGINS.includes(origin)) allowOrigin = origin;
+    else allowOrigin = 'null';
+  }
+
   const defaultHeaders = {
     'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Origin': allowOrigin,
     'Access-Control-Allow-Methods': 'POST, OPTIONS',
     'Access-Control-Allow-Headers': 'Content-Type, Authorization'
   };
-
-  // set headers for all responses
   Object.entries(defaultHeaders).forEach(([k, v]) => res.setHeader(k, v));
 
   if (req.method === 'OPTIONS') {
@@ -84,9 +105,22 @@ module.exports = async (req, res) => {
       req.on('error', reject);
     });
 
-    // basic server-side validation
-    if (!payload.name || !payload.email || !payload.message) {
-      res.status(400).json({ ok: false, error: 'Missing required fields' });
+    // sanitize + validate
+    const name = stripTags(payload.name || '');
+    const email = (payload.email || '').trim();
+    const message = stripTags(payload.message || '');
+    const subject = stripTags(payload.subject || 'Kontaktanfrage');
+
+    if (!name || name.length > 100) {
+      res.status(400).json({ ok: false, error: 'Invalid name' });
+      return;
+    }
+    if (!isValidEmail(email) || email.length > 254) {
+      res.status(400).json({ ok: false, error: 'Invalid email' });
+      return;
+    }
+    if (!message || message.length > 5000) {
+      res.status(400).json({ ok: false, error: 'Invalid message' });
       return;
     }
 
@@ -99,18 +133,21 @@ module.exports = async (req, res) => {
         return;
       }
     } catch (e) {
-      console.warn('Rate-limit check failed', e);
+      console.warn('Rate-limit check failed', e && e.message);
     }
 
-    // spam protection: simple honeypot field
-    if (payload._hp && payload._hp.trim()) {
-      // pretend success to bots
+    // spam protection: honeypot
+    if (payload._hp && String(payload._hp).trim()) {
       res.status(200).json({ ok: true });
       return;
     }
 
     // Optional: reCAPTCHA server-side verification if secret provided
     if (process.env.RECAPTCHA_SECRET) {
+      if (!payload.recaptchaToken) {
+        res.status(400).json({ ok: false, error: 'Missing reCAPTCHA token' });
+        return;
+      }
       try {
         const fetch = global.fetch || (await import('node-fetch')).default;
         const r = await fetch('https://www.google.com/recaptcha/api/siteverify', {
@@ -119,29 +156,42 @@ module.exports = async (req, res) => {
           body: `secret=${encodeURIComponent(process.env.RECAPTCHA_SECRET)}&response=${encodeURIComponent(payload.recaptchaToken || '')}`
         });
         const json = await r.json();
-        if (!json.success) {
+        if (!json || !json.success) {
           res.status(400).json({ ok: false, error: 'reCAPTCHA verification failed' });
           return;
         }
       } catch (e) {
-        console.error('reCAPTCHA verification error', e);
+        console.error('reCAPTCHA verification error', e && e.message);
         res.status(500).json({ ok: false, error: 'reCAPTCHA verification failed' });
         return;
       }
     }
 
+    const safePayload = { name, email, message, subject };
+
     if (process.env.SENDGRID_API_KEY) {
-      await sendViaSendGrid(payload);
+      // include reply_to when the sender provided a valid email
+      const sendPayload = Object.assign({}, safePayload);
+      try {
+        await sendViaSendGrid(sendPayload);
+      } catch (e) {
+        console.error('SendGrid error', e && e.message);
+        if (Sentry && Sentry.captureException) {
+          try { Sentry.captureException(e); } catch (s) { console.warn('Sentry capture failed', s && s.message); }
+        }
+        res.status(502).json({ ok: false, error: 'Email delivery failed' });
+        return;
+      }
     } else {
       // Dev-mode: log and pretend success
-      console.log('Contact payload (dev):', payload);
+      console.log('Contact payload (dev):', safePayload);
     }
 
     res.status(200).json({ ok: true });
   } catch (err) {
-    console.error('Contact API error:', err);
+    console.error('Contact API error:', err && err.message);
     if (Sentry && Sentry.captureException) {
-      try { Sentry.captureException(err); } catch (e) { console.warn('Sentry capture failed', e); }
+      try { Sentry.captureException(err); } catch (e) { console.warn('Sentry capture failed', e && e.message); }
     }
     res.status(500).json({ ok: false, error: 'Server error' });
   }
