@@ -8,7 +8,7 @@ function copyStatic() {
     name: 'copy-static',
     closeBundle() {
       // Files and directories to copy into dist so they are available at runtime
-      const toCopy = ['service-worker.js', 'manifest.json', 'offline.html', 'main.js', 'styles', 'scripts']
+  const toCopy = ['service-worker.js', 'manifest.json', 'offline.html', 'main.js', 'styles', 'scripts', 'src/portrait.jpg']
       const iconDir = 'icons'
       const outDir = resolve(process.cwd(), 'dist')
 
@@ -31,7 +31,8 @@ function copyStatic() {
 
       for (const p of toCopy) {
         const src = resolve(process.cwd(), p)
-        const dest = resolve(outDir, p)
+        // Special-case copying the portrait into the assets folder
+        const dest = p === 'src/portrait.jpg' ? resolve(outDir, 'assets', 'portrait.jpg') : resolve(outDir, p)
         if (!fs.existsSync(src)) continue
         copyRecursive(src, dest)
       }
