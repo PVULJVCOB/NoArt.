@@ -28,7 +28,7 @@
 }
 
 /* On narrow screens make the map stack above the info and center it */
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .location-content {
     display: flex;
     flex-direction: column;
@@ -38,8 +38,9 @@
 
   .location-map {
     order: -1; /* put map above text */
-    width: 100%;
-    max-width: 720px;
+    width: 90vw; /* take ~90% of the viewport width */
+    max-width: 900px;
+    margin: 0 auto 0.75rem auto;
   }
 
   .location-info {
@@ -49,5 +50,13 @@
     flex-direction: column;
     align-items: center; /* center the contact blocks visually on mobile */
     text-align: center;
+  }
+}
+
+/* Tighten on very small screens */
+@media (max-width: 480px) {
+  .location-map {
+    width: 94vw;
+    margin-bottom: var(--space-md);
   }
 }
