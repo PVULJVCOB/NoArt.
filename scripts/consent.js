@@ -20,8 +20,11 @@
     if (window.plausible) return;
     const script = document.createElement('script');
     script.setAttribute('defer', '');
-  // Default to the production domain if not configured elsewhere
-  script.setAttribute('data-domain', window.__NOART && window.__NOART.plausibleDomain ? window.__NOART.plausibleDomain : 'www.noart.de');
+    // Default to the production domain if not configured elsewhere
+    script.setAttribute(
+      'data-domain',
+      window.__NOART && window.__NOART.plausibleDomain ? window.__NOART.plausibleDomain : 'www.noart.de'
+    );
     script.src = 'https://plausible.io/js/plausible.js';
     document.head.appendChild(script);
   }
