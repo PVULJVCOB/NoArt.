@@ -1,0 +1,150 @@
+/* SideSlide Section Styling */
+
+.sideslide-section {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--bg) 97%, var(--accent)) 0%,
+    var(--bg) 50%,
+    color-mix(in srgb, var(--bg) 94%, var(--orange)) 100%
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+}
+
+.sideslide-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* Slider Card - das Bild das nach rechts scrolled */
+.card-second {
+  position: absolute;
+  left: 0;
+  width: 500px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  will-change: transform, left;
+}
+
+.sideslide-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Main Content - Text der mit Fade-In kommt */
+.main-content {
+  position: absolute;
+  right: 0;
+  width: 60%;
+  max-width: 600px;
+  padding: var(--space-4xl);
+  color: var(--fg);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.sideslide-title {
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--space-lg);
+  line-height: var(--line-height-tight);
+}
+
+.sideslide-text {
+  font-size: var(--font-size-lg);
+  line-height: var(--line-height-relaxed);
+  margin-bottom: var(--space-md);
+  color: var(--fg-muted);
+}
+
+.sideslide-text:last-child {
+  margin-bottom: 0;
+}
+
+/* Scroll Indicator */
+.scroll-indicator-right {
+  position: absolute;
+  bottom: var(--space-4xl);
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: var(--font-size-md);
+  color: var(--fg-muted);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 10;
+  animation: pulse-arrow 2s ease-in-out infinite;
+}
+
+@keyframes pulse-arrow {
+  0%, 100% {
+    transform: translateX(-50%) translateX(0);
+  }
+  50% {
+    transform: translateX(-50%) translateX(8px);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .card-second {
+    width: 40vw;
+  }
+  
+  .main-content {
+    width: 60%;
+    padding: var(--space-3xl);
+  }
+  
+  .sideslide-title {
+    font-size: var(--font-size-2xl);
+  }
+  
+  .sideslide-text {
+    font-size: var(--font-size-md);
+  }
+}
+
+@media (max-width: 768px) {
+  .card-second {
+    width: 100vw;
+  }
+  
+  .main-content {
+    width: 100%;
+    max-width: 100%;
+    padding: var(--space-2xl);
+    right: 0;
+    left: 0;
+  }
+  
+  .sideslide-title {
+    font-size: var(--font-size-xl);
+  }
+  
+  .sideslide-text {
+    font-size: var(--font-size-sm);
+  }
+  
+  .scroll-indicator-right {
+    bottom: var(--space-2xl);
+    font-size: var(--font-size-sm);
+  }
+}
