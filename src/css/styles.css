@@ -2166,7 +2166,7 @@ body {
     gap: var(--space-lg);
     padding: var(--space-4xl) var(--space-xl);
     box-shadow: -4px 0 20px rgb(0 0 0 / 20%);
-    transition: right 0.35s cubic-bezier(0.25, 0.8, 0.25, 1) 0.2s;
+    transition: right 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
     z-index: calc(var(--z-navigation) + 5);
     pointer-events: none;
   }
@@ -2174,7 +2174,6 @@ body {
   .nav-menu.active {
     right: 0;
     pointer-events: auto;
-    transition: right 0.35s cubic-bezier(0.25, 0.8, 0.25, 1) 0s;
   }
 
   .nav-menu .nav-item {
@@ -2214,23 +2213,19 @@ body {
   .nav-overlay {
     position: fixed;
     top: 0;
-    left: 0;
+    right: -100%;
     width: calc(100% - 280px);
     height: 100vh;
     height: 100dvh;
     background: rgb(0 0 0 / 50%);
-    opacity: 0;
-    visibility: hidden;
     pointer-events: none;
-    transition: opacity 0.25s ease 0s, visibility 0.25s ease 0s;
+    transition: right 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
     z-index: calc(var(--z-navigation) + 2);
   }
 
   .nav-overlay.active {
-    opacity: 1;
-    visibility: visible;
+    right: 280px;
     pointer-events: auto;
-    transition: opacity 0.3s ease 0.15s, visibility 0.3s ease 0.15s;
   }
 
   /* About Section Mobile Fixes */
