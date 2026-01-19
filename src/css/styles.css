@@ -544,18 +544,19 @@ body {
   justify-content: center;
   padding: 0;
   margin: 0;
-  overflow: hidden;
+  overflow: visible;
   box-shadow: var(--shadow-lg);
 }
 
-/* Hero section - edge to edge, extends above viewport for iOS overscroll */
+/* Hero section - edge to edge for Safari translucent toolbar */
 .section.hero-section {
-  min-height: calc(100vh + 100px);
-  min-height: calc(100dvh + 100px);
-  height: calc(100vh + 100px);
-  height: calc(100dvh + 100px);
-  margin-top: -100px;
-  padding-top: 100px;
+  min-height: 100vh;
+  min-height: 100dvh;
+  height: 100vh;
+  height: 100dvh;
+  margin: 0;
+  padding: 0;
+  overflow: visible;
 }
 
 .section-content {
@@ -1370,9 +1371,9 @@ body {
   top: -100px;
   left: 0;
   right: 0;
-  bottom: 0;
+  bottom: -100px;
   width: 100%;
-  height: calc(100% + 100px);
+  height: calc(100% + 200px);
   z-index: 0;
   overflow: hidden;
 }
