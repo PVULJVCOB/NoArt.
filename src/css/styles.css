@@ -2224,7 +2224,7 @@ body {
     visibility: hidden;
     pointer-events: none;
     transition: opacity 0.4s ease, backdrop-filter 0.4s ease, -webkit-backdrop-filter 0.4s ease, visibility 0.4s ease;
-    z-index: calc(var(--z-navigation) + 2);
+    z-index: calc(var(--z-navigation) - 5);
   }
 
   .nav-overlay.active {
