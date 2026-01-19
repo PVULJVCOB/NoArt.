@@ -537,6 +537,7 @@ body {
 .section {
   position: relative;
   min-height: 100vh;
+  min-height: 100dvh;
   width: 100%;
   display: flex;
   align-items: center;
@@ -553,11 +554,13 @@ body {
   width: 100%;
   margin: 0;
   padding: var(--space-5xl) var(--space-xl);
+  padding-top: calc(var(--space-5xl) + env(safe-area-inset-top, 0px));
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   min-height: 100vh;
+  min-height: 100dvh;
   box-sizing: border-box;
 }
 
@@ -749,8 +752,12 @@ body {
   right: 0;
   z-index: var(--z-navigation);
   padding: var(--space-lg) var(--space-xl);
+  padding-top: calc(var(--space-lg) + env(safe-area-inset-top, 0px));
+  padding-left: calc(var(--space-xl) + env(safe-area-inset-left, 0px));
+  padding-right: calc(var(--space-xl) + env(safe-area-inset-right, 0px));
   background: color-mix(in srgb, var(--bg) 60%, transparent);
   backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--border);
   transition: 
     background-color var(--transition-base), 
@@ -1986,16 +1993,20 @@ body {
    -------------------------------------------------------------------------- */
 
 @media (width <= 1024px) {
-  /* Navigation - Tablet still uses horizontal layout */
+  /* Navigation - Tablet */
   .navbar {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
     padding: var(--space-md) var(--space-lg);
+    padding-top: calc(var(--space-md) + env(safe-area-inset-top, 0px));
     gap: var(--space-sm);
   }
+}
 
+@media (width <= 1024px) and (width > 768px) {
+  /* Tablet horizontal nav - only between 768px and 1024px */
   .nav-menu {
     display: flex;
     flex-wrap: wrap;
@@ -2018,7 +2029,9 @@ body {
     display: inline-block;
     padding: calc(var(--space-sm) + 4px) var(--space-md);
   }
+}
 
+@media (width <= 1024px) {
   /* About Grid */
   .about-content {
     grid-template-columns: 1fr;
@@ -2144,15 +2157,18 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: var(--space-md) var(--space-lg);
+    padding-top: calc(var(--space-md) + env(safe-area-inset-top, 0px));
+    padding-left: calc(var(--space-lg) + env(safe-area-inset-left, 0px));
+    padding-right: calc(var(--space-lg) + env(safe-area-inset-right, 0px));
     gap: 0;
   }
 
   .nav-toggle {
-    display: flex;
+    display: flex !important;
   }
 
   .nav-menu {
-    display: flex;
+    display: none;
     position: fixed;
     top: 0;
     right: -100%;
@@ -2164,7 +2180,9 @@ body {
     justify-content: center;
     align-items: center;
     gap: var(--space-lg);
-    padding: var(--space-4xl) var(--space-xl);
+    padding: var(--space-xl);
+    padding-top: calc(var(--space-4xl) + env(safe-area-inset-top, 0px));
+    padding-bottom: calc(var(--space-4xl) + env(safe-area-inset-bottom, 0px));
     box-shadow: -4px 0 20px rgb(0 0 0 / 20%);
     transition: right 0.4s cubic-bezier(0.32, 0.72, 0, 1);
     z-index: calc(var(--z-navigation) + 5);
@@ -2172,6 +2190,7 @@ body {
   }
 
   .nav-menu.active {
+    display: flex;
     right: 0;
     pointer-events: auto;
   }
