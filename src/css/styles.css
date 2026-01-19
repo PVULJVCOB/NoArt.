@@ -764,8 +764,8 @@ body {
   padding-left: calc(var(--space-xl) + env(safe-area-inset-left, 0px));
   padding-right: calc(var(--space-xl) + env(safe-area-inset-right, 0px));
   background: color-mix(in srgb, var(--bg) 60%, transparent);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--border);
   transition: 
     background-color var(--transition-base), 
@@ -786,8 +786,8 @@ body {
   right: 0;
   height: env(safe-area-inset-top, 0px);
   background: color-mix(in srgb, var(--bg) 60%, transparent);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   z-index: -1;
 }
 
@@ -1129,7 +1129,7 @@ body {
   position: fixed;
   inset: 0;
   background: rgb(43 43 43 / 95%);
-  backdrop-filter: blur(20px);
+  backdrop-filter: blur(10px);
   z-index: var(--z-modal);
   display: none;
   padding: var(--space-lg);
@@ -1261,7 +1261,7 @@ body {
   min-width: 56px;
   transition: min-width 0.3s, box-shadow 0.3s, background 0.3s, backdrop-filter 0.3s;
   cursor: pointer;
-  backdrop-filter: blur(20px);
+  backdrop-filter: blur(10px);
   border: 1px solid var(--border);
 }
 
