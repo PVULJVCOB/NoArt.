@@ -543,21 +543,19 @@ body {
   align-items: center;
   justify-content: center;
   padding: 0;
-  padding-top: env(safe-area-inset-top, 0px);
   margin: 0;
   overflow: hidden;
   box-shadow: var(--shadow-lg);
 }
 
-/* Hero section needs to fill entire screen including notch area */
+/* Hero section - edge to edge, fills entire viewport including notch/Dynamic Island */
 .section.hero-section {
+  min-height: 100vh;
   min-height: 100dvh;
-  min-height: 100svh;
+  height: 100vh;
   height: 100dvh;
-  height: 100svh;
-  margin-top: 0;
-  padding-top: 0;
-  padding-bottom: env(safe-area-inset-bottom, 0px);
+  margin: 0;
+  padding: 0;
 }
 
 .section-content {
@@ -1369,10 +1367,12 @@ body {
 
 .hero-video-container {
   position: absolute;
-  top: calc(-1 * env(safe-area-inset-top, 0px));
+  top: 0;
   left: 0;
   right: 0;
   bottom: 0;
+  width: 100%;
+  height: 100%;
   z-index: 0;
   overflow: hidden;
 }
@@ -2115,10 +2115,10 @@ body {
 @media (width <= 768px) {
   /* Hero Section - Full viewport height on mobile */
   .section.hero-section {
+    min-height: 100vh;
     min-height: 100dvh;
-    min-height: 100svh;
+    height: 100vh;
     height: 100dvh;
-    height: 100svh;
   }
 
   .section.hero-section .hero-video-container {
@@ -2127,13 +2127,16 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
+    width: 100%;
     height: 100%;
   }
 
   .section.hero-section .section-content {
+    min-height: 100vh;
     min-height: 100dvh;
-    min-height: 100svh;
     padding: var(--space-xl) var(--space-md);
+    padding-top: max(var(--space-xl), env(safe-area-inset-top, 0px));
+    padding-bottom: max(var(--space-xl), env(safe-area-inset-bottom, 0px));
   }
 
   .section-content {
