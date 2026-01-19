@@ -776,7 +776,7 @@ body::before {
 
 .navbar {
   position: fixed;
-  top: calc(0px + env(safe-area-inset-top, 0px));
+  top: calc(var(--space-lg) + env(safe-area-inset-top, 0px));
   left: 50%;
   transform: translateX(-50%);
   width: 90%;
@@ -2038,7 +2038,7 @@ body::before {
 @media (width <= 1024px) {
   /* Navigation - Tablet */
   .navbar {
-    top: calc(1px + env(safe-area-inset-top, 0px));
+    top: calc(var(--space-md) + env(safe-area-inset-top, 0px));
     width: 92%;
     padding: var(--space-sm) var(--space-lg);
   }
@@ -2218,7 +2218,7 @@ body::before {
 
   /* Mobile Navigation - Hamburger Menu */
   .navbar {
-    top: calc(1px + env(safe-area-inset-top, 0px));
+    top: calc(var(--space-sm) + env(safe-area-inset-top, 0px));
     width: 94%;
     padding: var(--space-sm) var(--space-md);
   }
@@ -2230,22 +2230,22 @@ body::before {
   .nav-menu {
     display: flex;
     position: fixed;
-    top: calc(var(--space-lg) + env(safe-area-inset-top, 0px));
-    right: -320px;
-    width: 280px;
+    top: calc(var(--space-lg) + env(safe-area-inset-top, 0px) + var(--space-md) + 3px);
+    right: -400px;
+    width: 340px;
     height: auto;
     max-height: calc(100dvh - var(--space-lg) * 2 - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px));
-    background: color-mix(in srgb, var(--bg) 85%, transparent);
+    background: transparent;
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    border: 1px solid color-mix(in srgb, var(--border) 50%, transparent);
+    border: none;
     border-radius: 24px;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    gap: var(--space-md);
-    padding: var(--space-xl);
-    box-shadow: 0 8px 32px rgb(0 0 0 / 20%);
+    gap: var(--space-lg);
+    padding: var(--space-2xl);
+    box-shadow: none;
     transition: right 0.4s cubic-bezier(0.32, 0.72, 0, 1), visibility 0.4s ease;
     z-index: calc(var(--z-navigation) + 5);
     pointer-events: none;
@@ -2253,7 +2253,7 @@ body::before {
   }
 
   .nav-menu.active {
-    right: calc(5% / 2);
+    right: 5%;
     pointer-events: auto;
     visibility: visible;
   }
@@ -2445,7 +2445,7 @@ body::before {
 
 @media (width <= 480px) {
   .navbar {
-    top: calc(1px + env(safe-area-inset-top, 0px));
+    top: calc(var(--space-xs) + env(safe-area-inset-top, 0px));
     width: 95%;
     padding: var(--space-xs) var(--space-sm);
   }
@@ -2522,7 +2522,7 @@ body::before {
 @media (width <= 380px) {
   /* Navbar - sehr kompakt */
   .navbar {
-    top: calc(1px + env(safe-area-inset-top, 0px));
+    top: calc(var(--space-xs) + env(safe-area-inset-top, 0px));
     width: 96%;
     padding: var(--space-xs) var(--space-sm);
   }
