@@ -2438,6 +2438,108 @@ body {
   }
 }
 
+/* --------------------------------------------------------------------------
+   9.5 Extra Extra Small (≤380px) - Small Phones like iPhone SE, Mini
+   -------------------------------------------------------------------------- */
+
+@media (width <= 380px) {
+  /* Navbar - sehr kompakt */
+  .navbar {
+    padding: var(--space-xs) var(--space-sm);
+    padding-top: calc(var(--space-xs) + env(safe-area-inset-top, 0px));
+  }
+
+  .nav-logo {
+    font-size: var(--font-size-xl);
+  }
+
+  .nav-toggle {
+    width: 40px;
+    height: 40px;
+    padding: 6px;
+  }
+
+  .hamburger-line {
+    width: 20px;
+  }
+
+  /* Hero */
+  .hero-line.hero-main {
+    font-size: clamp(2rem, 15vw, 4rem);
+  }
+
+  .scroll-indicator {
+    font-size: var(--font-size-xs);
+  }
+
+  /* Section Content */
+  .section-content {
+    padding: var(--space-2xl) var(--space-sm);
+  }
+
+  .section-title {
+    font-size: var(--font-size-2xl);
+  }
+
+  /* Content Sections */
+  .content-section {
+    padding: var(--space-lg) var(--space-sm);
+  }
+
+  .content-section__text h2 {
+    font-size: var(--font-size-xl);
+  }
+
+  .content-section__text p {
+    font-size: var(--font-size-sm);
+  }
+
+  /* About */
+  .about-text .section-title {
+    font-size: var(--font-size-xl);
+  }
+
+  .text-content p {
+    font-size: var(--font-size-xs);
+  }
+
+  .about-stats .stat-item {
+    width: clamp(70px, 28vw, 90px);
+    min-width: 70px;
+    padding: var(--space-xs);
+  }
+
+  .stat-number {
+    font-size: clamp(1rem, 6vw, 1.5rem);
+  }
+
+  .stat-label {
+    font-size: 0.65rem;
+  }
+
+  /* Contact & Forms */
+  .cta-button {
+    padding: var(--space-sm) var(--space-md);
+    font-size: var(--font-size-sm);
+  }
+
+  /* Footer */
+  .footer-section {
+    padding: var(--space-lg) var(--space-sm);
+  }
+
+  /* Theme Toggle - kleiner */
+  .theme-toggle-float {
+    right: var(--space-sm);
+    bottom: var(--space-sm);
+  }
+
+  .theme-toggle-pill {
+    padding: 6px 10px;
+    min-width: 48px;
+  }
+}
+
 
 /* ==========================================================================
    10. ACCESSIBILITY & PREFERENCES
