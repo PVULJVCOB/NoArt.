@@ -781,10 +781,10 @@ body {
 .navbar::before {
   content: "";
   position: absolute;
-  top: calc(-1 * env(safe-area-inset-top, 0px));
+  top: calc(-100px - env(safe-area-inset-top, 0px));
   left: 0;
   right: 0;
-  height: env(safe-area-inset-top, 0px);
+  height: calc(100px + env(safe-area-inset-top, 0px));
   background: color-mix(in srgb, var(--bg) 60%, transparent);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
