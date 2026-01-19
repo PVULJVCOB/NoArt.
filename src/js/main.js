@@ -31,7 +31,6 @@
    ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
-  setDynamicViewportHeight();
   initializeNavigation();
   initializeScrollEffects();
   initializeLegalModals();
@@ -41,28 +40,6 @@ document.addEventListener('DOMContentLoaded', () => {
   enableThemePillAutoCollapse();
   enablePerformanceOptimizations();
 });
-
-/**
- * Set a reliable CSS viewport height for mobile Safari and other browsers
- * with dynamic toolbars. Updates --app-height on resize/orientation changes.
- */
-function setDynamicViewportHeight() {
-  const doc = document.documentElement;
-
-  const applyHeight = () => {
-    const vv = window.visualViewport;
-    const height = vv?.height || window.innerHeight;
-    doc.style.setProperty('--app-height', `${height}px`);
-  };
-
-  applyHeight();
-  window.addEventListener('resize', applyHeight);
-  window.addEventListener('orientationchange', applyHeight);
-  if (window.visualViewport) {
-    window.visualViewport.addEventListener('resize', applyHeight);
-  }
-}
-
 
 /* ==========================================================================
    NAVIGATION
@@ -82,13 +59,32 @@ function initializeNavigation() {
 
   // Update navbar state and progress on scroll
   window.addEventListener('scroll', () => {
-    const scrolled = window.pageYOffset;
-    const documentHeight = document.documentElement.scrollHeight - window.innerHeight;
-    const scrollPercent = (scrolled / documentHeight) * 100;
+    const scrollingElement = document.scrollingElement || document.documentElement;
+    const scrolled = scrollingElement.scrollTop;
+    const viewportHeight = window.visualViewport?.height || window.innerHeight;
+    const baseMaxScroll = Math.max(0, scrollingElement.scrollHeight - scrollingElement.clientHeight);
+    const footer = document.querySelector('.footer-section');
+    let maxScroll = baseMaxScroll;
+
+    if (footer) {
+      const footerTop = footer.getBoundingClientRect().top + window.pageYOffset;
+      const footerBottom = footerTop + footer.offsetHeight;
+      maxScroll = Math.max(maxScroll, footerBottom - viewportHeight);
+    }
+
+    const atBottom = maxScroll - scrolled <= 1;
+    const normalized = maxScroll > 0 ? (atBottom ? 1 : scrolled / maxScroll) : 0;
+    const scrollPercent = normalized * 100;
 
     // Update progress bar width
     if (navbarProgress) {
-      navbarProgress.style.width = `${scrollPercent}%`;
+      const clamped = Math.min(100, Math.max(0, scrollPercent));
+      navbarProgress.style.width = `${clamped}%`;
+
+      const fadeDistance = 60;
+      const fadeIn = Math.min(1, scrolled / fadeDistance);
+      const fadeOut = Math.min(1, Math.max(0, maxScroll - scrolled) / fadeDistance);
+      navbarProgress.style.opacity = `${Math.min(fadeIn, fadeOut)}`;
     }
 
     // Add/remove scrolled class for navbar styling
