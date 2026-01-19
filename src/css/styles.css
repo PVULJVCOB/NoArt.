@@ -210,6 +210,23 @@
   --shadow-2xl: 0 32px 64px rgb(0 0 0 / 30%);
 }
 
+/* Dynamische Viewport-Höhe für Mobile Safari & Co. */
+:root {
+  --app-height: 100vh;
+}
+
+@supports (height: 100svh) {
+  :root {
+    --app-height: 100svh;
+  }
+}
+
+@supports (height: 100dvh) {
+  :root {
+    --app-height: 100dvh;
+  }
+}
+
 /* --------------------------------------------------------------------------
    1.5 Übergänge & Z-Index
    -------------------------------------------------------------------------- */
@@ -258,7 +275,9 @@
 html,
 body {
   width: 100%;
-  height: 100%;
+  min-height: 100%;
+  min-height: var(--app-height);
+  height: auto;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   margin: 0;
@@ -276,6 +295,9 @@ body {
   line-height: var(--line-height-normal);
   color: var(--fg);
   background-color: var(--bg);
+  min-height: var(--app-height);
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
   background-attachment: fixed;
   -webkit-text-size-adjust: 100%;
   position: relative;
@@ -554,8 +576,7 @@ body::before {
 
 .section {
   position: relative;
-  min-height: 100vh;
-  min-height: 100dvh;
+  min-height: var(--app-height);
   width: 100%;
   display: flex;
   align-items: center;
@@ -568,10 +589,8 @@ body::before {
 
 /* Hero section - edge to edge for Safari translucent toolbar */
 .section.hero-section {
-  min-height: 100vh;
-  min-height: 100dvh;
-  height: 100vh;
-  height: 100dvh;
+  min-height: var(--app-height);
+  height: var(--app-height);
   margin: 0;
   padding: 0;
   overflow: visible;
@@ -588,8 +607,7 @@ body::before {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
-  min-height: 100dvh;
+  min-height: var(--app-height);
   box-sizing: border-box;
 }
 
@@ -2125,10 +2143,8 @@ body::before {
 @media (width <= 768px) {
   /* Hero Section - Full viewport height on mobile */
   .section.hero-section {
-    min-height: 100vh;
-    min-height: 100dvh;
-    height: 100vh;
-    height: 100dvh;
+    min-height: var(--app-height);
+    height: var(--app-height);
   }
 
   .section.hero-section .hero-video-container {
