@@ -2253,7 +2253,7 @@ body::before {
     backdrop-filter: blur(10px) saturate(1.05);
     -webkit-backdrop-filter: blur(10px) saturate(1.05);
     border: none;
-    border-radius: 100px;
+    border-radius: 30px;
     flex-direction: column;
     justify-content: center;
     align-items: center;
