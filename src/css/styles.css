@@ -548,14 +548,14 @@ body {
   box-shadow: var(--shadow-lg);
 }
 
-/* Hero section - edge to edge, fills entire viewport including notch/Dynamic Island */
+/* Hero section - edge to edge, extends above viewport for iOS overscroll */
 .section.hero-section {
-  min-height: 100vh;
-  min-height: 100dvh;
-  height: 100vh;
-  height: 100dvh;
-  margin: 0;
-  padding: 0;
+  min-height: calc(100vh + 100px);
+  min-height: calc(100dvh + 100px);
+  height: calc(100vh + 100px);
+  height: calc(100dvh + 100px);
+  margin-top: -100px;
+  padding-top: 100px;
 }
 
 .section-content {
@@ -1367,12 +1367,12 @@ body {
 
 .hero-video-container {
   position: absolute;
-  top: 0;
+  top: -100px;
   left: 0;
   right: 0;
   bottom: 0;
   width: 100%;
-  height: 100%;
+  height: calc(100% + 100px);
   z-index: 0;
   overflow: hidden;
 }
