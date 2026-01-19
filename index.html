@@ -4,23 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>NoArt. - Minimalistisch. Zeitlos. Authentisch.</title>
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Host+Grotesk:wght@300;400;500;600;700;800&display=swap"/>
-    <link rel="stylesheet" href="styles/variables.css" />
-  <link rel="stylesheet" href="styles/scrollanimation.css" />
-  <link rel="stylesheet" href="styles/motion.css" />
-  <link rel="stylesheet" href="styles/components.css" />
-  <link rel="stylesheet" href="styles/sections/location.css" />
-  <link rel="stylesheet" href="styles/sections/navbar.css" />
-  <link rel="stylesheet" href="styles/sections/hero.css" />
-  <link rel="stylesheet" href="styles/sections/gallery.css" />
-  <link rel="stylesheet" href="styles/sections/about.css" />
-  <link rel="stylesheet" href="styles/sections/contact.css" />
-  <link rel="stylesheet" href="styles/sections/footer.css" />
-  <link rel="stylesheet" href="styles/layout.css" />
-    <link rel="stylesheet" href="styles/components/themetoggle.css" />
-    <link rel="stylesheet" href="styles/responsive.css" />
-    <link rel="stylesheet" href="styles/consent.css" />
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="src/css/styles.css" />
     <meta name="description" content="NoArt. präsentiert minimalistische 3D-Kunst mit eleganten Akzenten. Erleben Sie zeitlose Ästhetik in ihrer reinsten Form." />
     <meta property="og:site_name" content="NoArt." />
     <meta property="og:title" content="NoArt. - Minimalistisch. Zeitlos. Authentisch." />
@@ -39,10 +28,8 @@
     <meta name="twitter:image:alt" content="NoArt. Portrait" />
     <meta name="theme-color" content="#fefdfb" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)" />
-    <link rel="manifest" href="./assets/manifest-JJMD9r_l.json" />
-    <link rel="icon" href="./icons/icon-192.svg" type="image/svg+xml" />
-    <link rel="apple-touch-icon" href="./icons/icon-192.svg" />
-    <link rel="icon" href="./icons/icon-512.svg" sizes="512x512" />
+    <link rel="icon" href="./src/assets/icons/icon-192.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="./src/assets/icons/icon-192.svg" />
   </head>
   <body>
     <a href="#main-content" class="skip-link">Zum Hauptinhalt springen</a>
@@ -90,22 +77,20 @@
     <!-- Main Content -->
     <main id="main-content">
       <section class="section hero-section" id="home">
-        <div class="hero-background">
+        <div class="hero-video-container">
           <video
             class="hero-video"
             autoplay
             muted
             loop
             playsinline
-            preload="metadata"
+            preload="auto"
             aria-hidden="true"
-            poster="src/portrait.jpg"
           >
             <source
               src="https://videos.pexels.com/video-files/7234931/7234931-uhd_2560_1440_30fps.mp4"
               type="video/mp4"
             />
-            Your browser does not support the video tag.
           </video>
         </div>
 
@@ -246,7 +231,7 @@
               >
                 <div class="placeholder-about-image">
                   <img
-                    src="src/portrait.jpg"
+                    src="src/assets/images/portrait.jpg"
                     alt="Portrait des Künstlers"
                     loading="lazy"
                     class="about-portrait"
@@ -539,42 +524,6 @@
       </div>
     </div>
 
-  <script src="main.js" defer></script>
-    <script>
-      // Optional: set your plausible domain here or via server-side injected variable
-      window.__NOART = window.__NOART || {};
-      window.__NOART.plausibleDomain = 'example.com';
-      // Optional: set your reCAPTCHA site key (leave empty to disable)
-      window.__NOART.recaptchaSiteKey = '';
-      // Optional: set your Sentry DSN for client-side error tracking
-      window.__NOART.sentryDsn = '';
-    </script>
-    <script src="scripts/recaptcha.js" defer></script>
-    <script src="scripts/consent.js" defer></script>
-    <script>
-      if ('serviceWorker' in navigator) {
-          window.addEventListener('load', function () {
-            // Use a relative path so the service worker registers correctly
-            // whether the site is served from root or a repo subpath.
-            navigator.serviceWorker.register('service-worker.js').then(function (reg) {
-              console.log('ServiceWorker registration successful with scope: ', reg.scope);
-            }, function (err) {
-              console.log('ServiceWorker registration failed: ', err);
-            });
-          });
-        }
-    </script>
-    <script async defer src="https://plausible.io/js/plausible.js"></script>
-    <script>
-      // honeypot
-      document.addEventListener('DOMContentLoaded', function () {
-        var honeypot = document.createElement('input');
-        honeypot.setAttribute('type', 'text');
-        honeypot.setAttribute('name', 'email');
-        honeypot.setAttribute('style', 'display:none');
-        document.body.appendChild(honeypot);
-      });
-    </script>
-    <script src="main.js"></script>
+  <script type="module" src="src/js/main.js"></script>
   </body>
 </html>
