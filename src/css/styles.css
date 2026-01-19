@@ -2190,6 +2190,19 @@ body {
     width: 100%;
     pointer-events: auto;
     cursor: pointer;
+    transition: color 0.3s ease, background-color 0.3s ease, transform 0.3s ease;
+  }
+
+  .nav-menu .nav-link::before {
+    display: none;
+  }
+
+  .nav-menu .nav-link:hover,
+  .nav-menu .nav-link:active {
+    color: var(--accent);
+    background-color: color-mix(in srgb, var(--accent) 10%, transparent);
+    transform: none;
+    text-shadow: none;
   }
 
   .nav-menu .nav-item:last-child .nav-link {
