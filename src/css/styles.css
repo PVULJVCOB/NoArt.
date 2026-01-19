@@ -2250,10 +2250,10 @@ body::before {
     height: var(--app-height);
     min-height: var(--app-height);
     background: color-mix(in srgb, var(--bg) 70%, transparent);
-    backdrop-filter: blur(16px) saturate(1.05);
-    -webkit-backdrop-filter: blur(16px) saturate(1.05);
+    backdrop-filter: blur(10px) saturate(1.05);
+    -webkit-backdrop-filter: blur(10px) saturate(1.05);
     border: none;
-    border-radius: 0;
+    border-radius: 100px;
     flex-direction: column;
     justify-content: center;
     align-items: center;
