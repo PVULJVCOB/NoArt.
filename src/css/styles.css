@@ -2124,12 +2124,12 @@ body {
 
   .section.hero-section .hero-video-container {
     position: absolute;
-    top: 0;
+    top: -100px;
     left: 0;
     right: 0;
-    bottom: 0;
+    bottom: -100px;
     width: 100%;
-    height: 100%;
+    height: calc(100% + 200px);
   }
 
   .section.hero-section .section-content {
@@ -2440,6 +2440,7 @@ body {
 @media (width <= 480px) {
   .navbar {
     padding: var(--space-sm) var(--space-md);
+    padding-top: calc(var(--space-sm) + env(safe-area-inset-top, 0px));
     gap: 0;
   }
 
