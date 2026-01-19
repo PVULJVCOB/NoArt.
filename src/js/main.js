@@ -31,6 +31,7 @@
    ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
+  setDynamicViewportHeight();
   initializeNavigation();
   initializeScrollEffects();
   initializeLegalModals();
@@ -40,6 +41,27 @@ document.addEventListener('DOMContentLoaded', () => {
   enableThemePillAutoCollapse();
   enablePerformanceOptimizations();
 });
+
+/**
+ * Set a reliable CSS viewport height for mobile Safari and other browsers
+ * with dynamic toolbars. Updates --app-height on resize/orientation changes.
+ */
+function setDynamicViewportHeight() {
+  const doc = document.documentElement;
+
+  const applyHeight = () => {
+    const vv = window.visualViewport;
+    const height = vv?.height || window.innerHeight;
+    doc.style.setProperty('--app-height', `${height}px`);
+  };
+
+  applyHeight();
+  window.addEventListener('resize', applyHeight);
+  window.addEventListener('orientationchange', applyHeight);
+  if (window.visualViewport) {
+    window.visualViewport.addEventListener('resize', applyHeight);
+  }
+}
 
 
 /* ==========================================================================

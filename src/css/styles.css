@@ -2158,6 +2158,13 @@ body::before {
   }
 
   .section.hero-section .section-content {
+    min-height: var(--app-height);
+    height: var(--app-height);
+    padding: max(var(--space-xl), env(safe-area-inset-top, 0px)) var(--space-md)
+      max(var(--space-xl), env(safe-area-inset-bottom, 0px));
+  }
+
+  .section.hero-section .section-content {
     min-height: 100vh;
     min-height: 100dvh;
     padding: var(--space-xl) var(--space-md);
