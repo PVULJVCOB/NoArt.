@@ -285,8 +285,11 @@ body {
   color: var(--fg);
   background-color: var(--bg);
   min-height: 100dvh;
-  padding-top: env(safe-area-inset-top, 0px);
-  padding-bottom: env(safe-area-inset-bottom, 0px);
+  /* Negativer Margin damit Inhalt unter Dynamic Island scrollt */
+  margin-top: calc(-1 * env(safe-area-inset-top, 0px));
+  margin-right: calc(-1 * env(safe-area-inset-right, 0px));
+  margin-bottom: calc(-1 * env(safe-area-inset-bottom, 0px));
+  margin-left: calc(-1 * env(safe-area-inset-left, 0px));
   background-attachment: fixed;
   -webkit-text-size-adjust: 100%;
   position: relative;
@@ -583,6 +586,8 @@ body::before {
   min-height: 100dvh;
   height: 100dvh;
   margin: 0;
+  /* Negativer Margin um unter Dynamic Island zu gehen */
+  margin-top: calc(-1 * env(safe-area-inset-top, 0px));
   width: 100vw;
   max-width: 100vw;
   margin-left: calc(50% - 50vw);
@@ -597,13 +602,17 @@ body::before {
   width: 100%;
   margin: 0;
   padding: var(--space-5xl) var(--space-xl);
-  padding-top: calc(var(--space-5xl) + env(safe-area-inset-top, 0px));
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   min-height: 100dvh;
   box-sizing: border-box;
+}
+
+/* Hero section content - Safe Area Padding wieder hinzufügen */
+.hero-section .section-content {
+  padding-top: calc(var(--space-5xl) + env(safe-area-inset-top, 0px));
 }
 
 .section-header {
