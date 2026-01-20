@@ -554,6 +554,7 @@ body {
   justify-content: center;
   min-height: 100dvh;
   box-sizing: border-box;
+  background: transparent;
 }
 
 /* Hero section content - kein extra padding mehr nötig */
@@ -756,8 +757,7 @@ body {
 
 .navbar {
   position: fixed;
-  /* Safe Area Abstand damit Navbar unter Dynamic Island bleibt */
-  top: calc(var(--space-lg) + env(safe-area-inset-top, 0px));
+  top: var(--space-lg);
   left: 50%;
   transform: translateX(-50%);
   width: 90%;
@@ -1405,6 +1405,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  background: transparent;
 }
 
 .hero-line.hero-main {
@@ -1432,7 +1433,7 @@ body {
 .scroll-indicator {
   position: absolute;
   margin: 0;
-  bottom: calc(var(--space-3xl) + env(safe-area-inset-bottom, 0px));
+  bottom: var(--space-3xl);
   left: 50%;
   transform: translateX(-50%);
   display: flex;
@@ -1578,6 +1579,7 @@ body {
 .about-text {
   max-width: none;
   margin-top: 0;
+  background: transparent;
 }
 
 .text-content p {
@@ -1585,6 +1587,7 @@ body {
   color: var(--fg-muted);
   line-height: var(--line-height-relaxed);
   font-size: var(--font-size-lg);
+  background: transparent;
 }
 
 .about-stats {
@@ -1981,7 +1984,7 @@ body {
 @media (width <= 1024px) {
   /* Navigation - Tablet */
   .navbar {
-    top: calc(var(--space-md) + env(safe-area-inset-top, 0px));
+    top: var(--space-md);
     width: 92%;
     padding: var(--space-sm) var(--space-lg);
   }
@@ -2134,7 +2137,7 @@ body {
 
   /* Mobile Navigation - Hamburger Menu */
   .navbar {
-    top: calc(var(--space-sm) + env(safe-area-inset-top, 0px));
+    top: var(--space-sm);
     width: 94%;
     padding: var(--space-sm) var(--space-md);
   }
@@ -2363,7 +2366,7 @@ body {
 
 @media (width <= 480px) {
   .navbar {
-    top: calc(var(--space-xs) + env(safe-area-inset-top, 0px));
+    top: var(--space-xs);
     width: 95%;
     padding: var(--space-xs) var(--space-sm);
   }
@@ -2435,7 +2438,7 @@ body {
 @media (width <= 380px) {
   /* Navbar - sehr kompakt */
   .navbar {
-    top: calc(var(--space-xs) + env(safe-area-inset-top, 0px));
+    top: var(--space-xs);
     width: 96%;
     padding: var(--space-xs) var(--space-sm);
   }
