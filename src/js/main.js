@@ -729,8 +729,6 @@ function initializeContactForm() {
  */
 function initializeAnimations() {
   const heroLines = document.querySelectorAll('.hero-line');
-  const heroSubtitle = document.querySelector('.hero-subtitle');
-  const heroCta = document.querySelector('.hero-cta');
 
   // Animate hero lines with stagger
   heroLines.forEach((line, index) => {
@@ -740,24 +738,6 @@ function initializeAnimations() {
       line.style.transform = 'translateY(0)';
     }, delay);
   });
-
-  // Animate subtitle
-  if (heroSubtitle) {
-    const delay = heroSubtitle.getAttribute('data-delay') || 600;
-    setTimeout(() => {
-      heroSubtitle.style.opacity = '1';
-      heroSubtitle.style.transform = 'translateY(0)';
-    }, delay);
-  }
-
-  // Animate CTA button
-  if (heroCta) {
-    const delay = heroCta.getAttribute('data-delay') || 800;
-    setTimeout(() => {
-      heroCta.style.opacity = '1';
-      heroCta.style.transform = 'translateY(0)';
-    }, delay);
-  }
 
   // Initialize hero video
   initializeHeroVideo();
@@ -850,7 +830,7 @@ function initializeHeroVideo() {
  */
 function enablePerformanceOptimizations() {
   // GPU hints for frequently animated elements
-  const elementsToOptimize = document.querySelectorAll('.hero-layer, .cursor, .content-section');
+  const elementsToOptimize = document.querySelectorAll('.content-section');
   elementsToOptimize.forEach((el) => {
     el.style.willChange = 'transform';
   });
