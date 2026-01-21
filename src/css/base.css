@@ -131,6 +131,14 @@
   --safe-area-right: env(safe-area-inset-right, 0px);
   --safe-area-bottom: env(safe-area-inset-bottom, 0px);
   --safe-area-left: env(safe-area-inset-left, 0px);
+
+  /* ─────────────────────────────────────────
+     VIEWPORT DIMENSIONEN
+     ───────────────────────────────────────── */
+  --_w: 100vw;
+  --_h: 100vh;
+  --screenWidth: tan(atan2(var(--_w), 1px));
+  --screenHeight: tan(atan2(var(--_h), 1px));
 }
 
 /* --------------------------------------------------------------------------
@@ -214,7 +222,7 @@ body {
   line-height: var(--line-height-normal);
   color: var(--fg);
   background-color: var(--bg);
-  min-height: 100dvh;
+  min-height: 100lvh;
   margin: 0;
   padding: 0;
   background-attachment: fixed;
