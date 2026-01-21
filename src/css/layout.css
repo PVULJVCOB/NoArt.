@@ -181,9 +181,12 @@
   position: relative;
   z-index: var(--z-content);
   width: 100%;
-  max-width: 1200px;
+  max-width: var(--content-max-width);
   margin: 0 auto;
-  padding: var(--space-5xl) var(--space-xl);
+  padding: var(--content-padding-block)
+    calc(var(--content-padding-inline) + var(--safe-area-right))
+    var(--content-padding-block)
+    calc(var(--content-padding-inline) + var(--safe-area-left));
   display: flex;
   flex-direction: column;
   min-height: 100dvh;
@@ -194,7 +197,10 @@
 
 /* Hero section content - kein extra padding mehr noetig */
 .hero-section .section-content {
-  padding-top: 0;
+  padding: 0
+    calc(var(--content-padding-inline) + var(--safe-area-right))
+    0
+    calc(var(--content-padding-inline) + var(--safe-area-left));
   display: flex;
   align-items: center;
   justify-content: center;
@@ -215,7 +221,7 @@
 }
 
 /* Section Title */
-.section-title {
+:is(.section-title, .gallery-title) {
   font-size: var(--font-size-6xl);
   font-weight: var(--font-weight-extrabold);
   color: var(--fg);
@@ -242,7 +248,7 @@
 }
 
 /* Section Subtitle */
-.section-subtitle {
+:is(.section-subtitle, .gallery-subtitle) {
   font-size: var(--font-size-xl);
   color: var(--fg-muted);
   font-weight: var(--font-weight-medium);
@@ -263,9 +269,12 @@
   justify-content: center;
   align-items: center;
   gap: var(--space-5xl);
-  padding: var(--space-6xl) var(--space-xl);
+  padding: var(--content-section-padding-block)
+    calc(var(--content-padding-inline) + var(--safe-area-right))
+    var(--content-section-padding-block)
+    calc(var(--content-padding-inline) + var(--safe-area-left));
   min-height: 90vh;
-  max-width: 1200px;
+  max-width: var(--content-max-width);
   margin: 0 auto;
   position: relative;
 }

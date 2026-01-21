@@ -117,6 +117,12 @@
   --space-4xl: 6rem;
   --space-5xl: 8rem;
   --space-6xl: 10rem;
+
+  /* Content Layout */
+  --content-max-width: 1200px;
+  --content-padding-inline: clamp(var(--space-md), 3vw, var(--space-xl));
+  --content-padding-block: clamp(var(--space-3xl), 8vh, var(--space-5xl));
+  --content-section-padding-block: var(--space-6xl);
   
   /* Border Radius */
   --radius-sm: 0.375rem;
@@ -202,8 +208,7 @@ body {
   width: 100%;
   min-height: 100%;
   min-height: 100dvh;
-  min-height: 100lvh;
-  height: auto;
+  min-height: 100svh;
   height: 100%;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -215,7 +220,6 @@ html {
   font-size: 16px;
   scroll-behavior: smooth;
   text-rendering: optimizelegibility;
-  overflow-x: hidden;
 }
 
 body {

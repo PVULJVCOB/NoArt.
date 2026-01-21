@@ -16,19 +16,12 @@
    -------------------------------------------------------------------------- */
 
 @media (width <= 1024px) {
-  /* Navigation - Tablet */
-  .navbar {
-    top: 0;
-    left: 0;
-    right: 0;
-    width: 100%;
-    max-width: 100%;
-    transform: none;
-    padding-top: calc(var(--space-sm) + var(--safe-area-top));
-    padding-bottom: var(--space-sm);
-    padding-left: calc(var(--space-lg) + var(--safe-area-left));
-    padding-right: calc(var(--space-lg) + var(--safe-area-right));
+  :root {
+    --content-padding-inline: var(--space-lg);
+    --content-padding-block: var(--space-4xl);
+    --content-section-padding-block: var(--space-4xl);
   }
+
   /* About Grid */
   .about-content {
     grid-template-columns: 1fr;
@@ -76,18 +69,17 @@
    -------------------------------------------------------------------------- */
 
 @media (width <= 768px) {
+  :root {
+    --content-padding-inline: var(--space-md);
+    --content-padding-block: var(--space-3xl);
+    --content-section-padding-block: var(--space-2xl);
+  }
+
   /* Prevent horizontal scroll on mobile */
   html, body {
     overflow-x: hidden;
     width: 100%;
     max-width: 100%;
-  }
-
-  .section-content {
-    padding: var(--space-3xl) var(--space-md);
-    width: 100%;
-    max-width: 100%;
-    box-sizing: border-box;
   }
 
   .section-title {
@@ -96,7 +88,6 @@
 
   /* Content Sections */
   .content-section {
-    padding: var(--space-2xl) var(--space-md);
     gap: var(--space-lg);
     max-width: 100%;
     width: 100%;
@@ -160,19 +151,6 @@
   }
 
   /* Mobile Navigation - Hamburger Menu */
-  .navbar {
-    top: 0;
-    left: 0;
-    right: 0;
-    width: 100%;
-    max-width: 100%;
-    transform: none;
-    padding-top: calc(var(--space-sm) + env(safe-area-inset-top, 0px));
-    padding-bottom: var(--space-sm);
-    padding-left: calc(var(--space-md) + env(safe-area-inset-left, 0px));
-    padding-right: calc(var(--space-md) + env(safe-area-inset-right, 0px));
-  }
-
   .nav-menu {
     top: 0;
     left: 0;
@@ -192,25 +170,9 @@
     width: 100%;
   }
 
-  .nav-menu .nav-item {
-    padding-left: var(--space-md);
-    padding-right: var(--space-md);
-  }
-
   .nav-theme-toggle-card {
     justify-content: flex-end;
     width: 100%;
-  }
-
-  /* About Section Mobile Fixes */
-  .section.about-section {
-    padding: var(--space-4xl) var(--space-md);
-  }
-
-  .section.about-section .section-content {
-    width: 100%;
-    max-width: 100%;
-    padding: 0;
   }
 
   .about-content {
@@ -309,17 +271,9 @@
    -------------------------------------------------------------------------- */
 
 @media (width <= 480px) {
-  .navbar {
-    top: 0;
-    left: 0;
-    right: 0;
-    width: 100%;
-    max-width: 100%;
-    transform: none;
-    padding-top: calc(var(--space-xs) + env(safe-area-inset-top, 0px));
-    padding-bottom: var(--space-xs);
-    padding-left: calc(var(--space-sm) + env(safe-area-inset-left, 0px));
-    padding-right: calc(var(--space-sm) + env(safe-area-inset-right, 0px));
+  :root {
+    --content-padding-inline: var(--space-sm);
+    --content-section-padding-block: var(--space-lg);
   }
 
   .nav-logo {
@@ -333,11 +287,6 @@
   .nav-menu .nav-link {
     font-size: var(--font-size-lg);
     padding: var(--space-sm) var(--space-md);
-  }
-
-  /* About Section Extra Small */
-  .section.about-section {
-    padding: var(--space-3xl) var(--space-sm);
   }
 
   .about-text .section-title {
@@ -386,6 +335,11 @@
    -------------------------------------------------------------------------- */
 
 @media (width <= 380px) {
+  :root {
+    --content-padding-inline: var(--space-xs);
+    --content-padding-block: var(--space-2xl);
+    --content-section-padding-block: var(--space-lg);
+  }
   /* Navbar - sehr kompakt */
   .nav-logo {
     font-size: var(--font-size-xl);
@@ -410,20 +364,11 @@
     font-size: var(--font-size-xs);
   }
 
-  /* Section Content */
-  .section-content {
-    padding: var(--space-2xl) var(--space-sm);
-  }
-
   .section-title {
     font-size: var(--font-size-2xl);
   }
 
   /* Content Sections */
-  .content-section {
-    padding: var(--space-lg) var(--space-sm);
-  }
-
   .content-section__text h2 {
     font-size: var(--font-size-xl);
   }
