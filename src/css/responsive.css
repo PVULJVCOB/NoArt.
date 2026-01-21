@@ -172,9 +172,35 @@
 
   /* Mobile Navigation - Hamburger Menu */
   .navbar {
-    top: var(--space-sm);
-    width: 94%;
-    padding: var(--space-sm) var(--space-md);
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    max-width: 100%;
+    transform: none;
+    padding-top: calc(var(--space-sm) + env(safe-area-inset-top, 0px));
+    padding-bottom: var(--space-sm);
+    padding-left: calc(var(--space-md) + env(safe-area-inset-left, 0px));
+    padding-right: calc(var(--space-md) + env(safe-area-inset-right, 0px));
+  }
+
+  .nav-menu {
+    width: 100%;
+    height: 100dvh;
+    height: 100svh;
+    padding-left: var(--space-xl);
+    padding-right: var(--space-xl);
+  }
+
+  .nav-menu .nav-item.nav-theme-toggle {
+    align-self: flex-end;
+    text-align: right;
+    width: auto;
+  }
+
+  .nav-theme-toggle-card {
+    justify-content: flex-end;
+    width: auto;
   }
 
   /* About Section Mobile Fixes */
