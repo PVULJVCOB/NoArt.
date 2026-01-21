@@ -53,6 +53,7 @@ function initializeParallax() {
   if (prefersReducedMotion) return;
 
   let ticking = false;
+  let lastScrollY = window.scrollY;
   let currentTransforms = new Map();
   
   // Detect if device is mobile/touch for smoother handling
@@ -62,12 +63,14 @@ function initializeParallax() {
 
   function computeRate(type, distanceFromCenter) {
     const base = distanceFromCenter / window.innerHeight;
+    // Reduce parallax intensity on mobile for smoother experience
+    const mobileFactor = isMobile ? 0.5 : 1;
     const rates = {
-      'parallax-slow': -30,
-      'parallax-medium': -50,
-      'parallax-fast': -90,
+      'parallax-slow': -30 * mobileFactor,
+      'parallax-medium': -50 * mobileFactor,
+      'parallax-fast': -90 * mobileFactor,
     };
-    return base * (rates[type] || -40);
+    return base * (rates[type] || -40 * mobileFactor);
   }
 
   function lerp(start, end, factor) {
@@ -76,8 +79,8 @@ function initializeParallax() {
 
   function updateParallax() {
     const parallaxElements = document.querySelectorAll('[data-scroll*="parallax"]');
-    // Smoother interpolation on mobile for less jerky scrolling
-    const smoothFactor = isMobile ? 0.12 : 0.1;
+    // Smoother interpolation on mobile
+    const smoothFactor = isMobile ? 0.15 : 0.1;
 
     parallaxElements.forEach((el) => {
       const rect = el.getBoundingClientRect();

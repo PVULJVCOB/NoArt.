@@ -68,16 +68,15 @@
   top: 0;
   left: 0;
   right: 0;
-  bottom: 0;
   width: 100%;
-  height: 100%;
-  min-height: 100dvh;
-  min-height: -webkit-fill-available;
+  height: 100dvh;
+  height: 100svh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: var(--space-2xl);
+  /* Padding berücksichtigt safe-areas */
   padding: var(--space-2xl) var(--space-xl);
   padding-top: calc(var(--space-2xl) + env(safe-area-inset-top, 0px));
   padding-bottom: calc(var(--space-2xl) + env(safe-area-inset-bottom, 0px));
@@ -86,11 +85,13 @@
   z-index: calc(var(--z-navigation) + 5);
   visibility: hidden;
   opacity: 0;
-  transform: translateY(1%);
+  transform: translateY(-100%);
   backdrop-filter: blur(10px) saturate(1.2);
   -webkit-backdrop-filter: blur(10px) saturate(1.2);
   border-radius: 2px;
   box-sizing: border-box;
+  /* Explizit keine Margins */
+  margin: 0;
 }
 
 .nav-menu.active {
@@ -603,15 +604,7 @@
   aspect-ratio: 170 / 200;
   justify-content: center;
   align-items: center;
-  transition: 
-    transform var(--transition-base), 
-    background var(--transition-base), 
-    box-shadow var(--transition-base);
-}
 
-.stat-item:hover {
-  transform: translateY(-3px);
-  background: #363636;
 }
 
 .stat-number {

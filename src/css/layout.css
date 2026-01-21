@@ -162,8 +162,8 @@
 
 /* Hero section - Edge-to-Edge, Video geht bis hinter Dynamic Island */
 .section.hero-section {
-  min-height: 100dvh;
-  height: 100dvh;
+  min-height: 100lvh;
+  height: 100lvh;
   margin: 0;
   width: 100%;
   max-width: 100%;
@@ -171,12 +171,13 @@
   padding-top: env(safe-area-inset-top, 0px);
   padding-bottom: env(safe-area-inset-bottom, 0px);
   box-sizing: border-box;
-  overflow: visible;
+  overflow: hidden;
 }
 
 .section.hero-section .section-content {
   padding-top: var(--safe-area-top);
   padding-bottom: var(--safe-area-bottom);
+  min-height: 100%;
 }
 
 .section-content {
@@ -326,6 +327,8 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center center;
+  display: block;
   transition: transform var(--transition-slow), filter var(--transition-slow);
   filter: grayscale(0.2) contrast(1.1);
 }

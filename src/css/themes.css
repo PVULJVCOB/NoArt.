@@ -90,10 +90,6 @@
   color: var(--fg);
 }
 
-[data-theme='light'] .stat-item:hover {
-  background: color-mix(in srgb, var(--bg-elevated) 90%, var(--accent) 10%);
-}
-
 [data-theme='light'] .stat-item .stat-label {
   color: var(--fg-muted);
 }
