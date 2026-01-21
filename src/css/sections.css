@@ -426,11 +426,9 @@
   display: grid;
   grid-template-columns: 1fr 2fr;
   gap: var(--space-4xl);
-  margin-bottom: var(--space-2xl);
   width: 100%;
   max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0 auto var(--space-2xl);
 }
 
 .footer-brand p {

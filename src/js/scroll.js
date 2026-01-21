@@ -53,24 +53,23 @@ function initializeParallax() {
   if (prefersReducedMotion) return;
 
   let ticking = false;
-  let lastScrollY = window.scrollY;
-  let currentTransforms = new Map();
+  const currentTransforms = new Map();
   
   // Detect if device is mobile/touch for smoother handling
   const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) 
     || window.matchMedia('(max-width: 768px)').matches
     || 'ontouchstart' in window;
 
+  const rates = {
+    'parallax-slow': -30,
+    'parallax-medium': -50,
+    'parallax-fast': -90,
+  };
+
   function computeRate(type, distanceFromCenter) {
     const base = distanceFromCenter / window.innerHeight;
-    // Reduce parallax intensity on mobile for smoother experience
     const mobileFactor = isMobile ? 0.5 : 1;
-    const rates = {
-      'parallax-slow': -30 * mobileFactor,
-      'parallax-medium': -50 * mobileFactor,
-      'parallax-fast': -90 * mobileFactor,
-    };
-    return base * (rates[type] || -40 * mobileFactor);
+    return base * ((rates[type] ?? -40) * mobileFactor);
   }
 
   function lerp(start, end, factor) {
@@ -104,7 +103,6 @@ function initializeParallax() {
     });
 
     ticking = false;
-    lastScrollY = window.scrollY;
   }
 
   // Use passive scroll listener with throttling

@@ -29,9 +29,6 @@
     padding-left: calc(var(--space-lg) + var(--safe-area-left));
     padding-right: calc(var(--space-lg) + var(--safe-area-right));
   }
-}
-
-@media (width <= 1024px) {
   /* About Grid */
   .about-content {
     grid-template-columns: 1fr;
@@ -84,23 +81,6 @@
     overflow-x: hidden;
     width: 100%;
     max-width: 100%;
-  }
-
-  /* Hero section - true 100dvh on mobile */
-  .section.hero-section {
-    min-height: calc(100lvh + var(--safe-area-top) + var(--safe-area-bottom));
-    height: calc(100lvh + var(--safe-area-top) + var(--safe-area-bottom));
-    width: 100%;
-    max-width: 100%;
-    margin: 0;
-    margin-top: calc(-1 * var(--safe-area-top));
-    margin-bottom: calc(-1 * var(--safe-area-bottom));
-    padding: 0;
-  }
-
-  .section.hero-section .section-content {
-    padding: 0;
-    min-height: 100%;
   }
 
   .section-content {
@@ -164,7 +144,10 @@
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     padding-bottom: 8px;
-    gap: var(--space-md);
+    flex-wrap: nowrap;
+    justify-content: center;
+    gap: var(--space-sm);
+    width: 100%;
   }
 
   .about-stats::-webkit-scrollbar { 
@@ -282,13 +265,6 @@
     margin: 0 auto;
   }
 
-  .about-stats {
-    flex-wrap: nowrap;
-    justify-content: center;
-    gap: var(--space-sm);
-    width: 100%;
-  }
-
   .about-stats .stat-item {
     flex: 0 0 auto;
     width: clamp(90px, 28vw, 120px);
@@ -351,15 +327,6 @@
   }
 
   .nav-menu {
-    width: 100%;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: 100vh;
-    height: 100dvh;
-    height: 100svh;
-    height: 100lvh;
-    margin: 0;
     padding: var(--space-2xl) 0;
   }
 
@@ -420,19 +387,6 @@
 
 @media (width <= 380px) {
   /* Navbar - sehr kompakt */
-  .navbar {
-    top: 0;
-    left: 0;
-    right: 0;
-    width: 100%;
-    max-width: 100%;
-    transform: none;
-    padding-top: calc(var(--space-xs) + env(safe-area-inset-top, 0px));
-    padding-bottom: var(--space-xs);
-    padding-left: calc(var(--space-sm) + env(safe-area-inset-left, 0px));
-    padding-right: calc(var(--space-sm) + env(safe-area-inset-right, 0px));
-  }
-
   .nav-logo {
     font-size: var(--font-size-xl);
   }
