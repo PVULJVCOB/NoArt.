@@ -54,31 +54,25 @@
         <li class="nav-item">
           <a href="#contact" class="nav-link" data-text="Contact">Contact</a>
         </li>
+        <li class="nav-item nav-theme-toggle">
+          <div class="nav-theme-toggle-card">
+            <span id="theme-desc" class="theme-desc" aria-live="polite">Hell / Dunkel</span>
+            <button
+              id="theme-toggle"
+              class="theme-toggle"
+              role="switch"
+              aria-checked="false"
+              aria-label="Toggle light and dark mode"
+              title="Theme wechseln"
+            >
+              <span class="track" aria-hidden="true">
+                <span class="thumb"></span>
+              </span>
+            </button>
+          </div>
+        </li>
       </ul>
-      <div class="navbar-progress"></div>
     </nav>
-    <!-- Theme Toggle -->
-    <aside class="theme-region" role="region" aria-label="Theme wechseln">
-      <div class="theme-toggle-float" tabindex="0">
-        <div class="theme-toggle-pill">
-          <span id="theme-desc" class="theme-desc" aria-live="polite"
-            >Hell / Dunkel</span
-          >
-          <button
-            id="theme-toggle"
-            class="theme-toggle"
-            role="switch"
-            aria-checked="false"
-            aria-label="Toggle light and dark mode"
-            title="Theme wechseln"
-          >
-            <span class="track" aria-hidden="true">
-              <span class="thumb"></span>
-            </span>
-          </button>
-        </div>
-      </div>
-    </aside>
     <!-- Main Content -->
     <main id="main-content">
       <section class="section hero-section" id="home">

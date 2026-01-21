@@ -4,7 +4,7 @@
  * ==========================================================================
  *
  * Core functionality for the NoArt. website including:
- * - Smooth scroll navigation with progress indicator
+ * - Smooth scroll navigation
  * - Intersection Observer-based scroll animations
  * - Parallax effects for visual depth
  * - Light/dark theme toggle with localStorage persistence
@@ -37,57 +37,27 @@ document.addEventListener('DOMContentLoaded', () => {
   initializeContactForm();
   initializeAnimations();
   initializeThemeToggle();
-  enableThemePillAutoCollapse();
   enablePerformanceOptimizations();
 });
 
 /* ==========================================================================
    NAVIGATION
    ==========================================================================
-   Handles navbar scroll behavior, progress indicator, and smooth scrolling.
+  Handles navbar scroll behavior and smooth scrolling.
    ========================================================================== */
 
 /**
  * Initialize navigation functionality.
- * - Adds scroll progress indicator
  * - Toggles navbar style on scroll
  * - Enables smooth scrolling for anchor links
  */
 function initializeNavigation() {
   const navbar = document.querySelector('.navbar');
-  const navbarProgress = document.querySelector('.navbar-progress');
 
-  // Update navbar state and progress on scroll
+  // Add/remove scrolled class for navbar styling
   window.addEventListener('scroll', () => {
     const scrollingElement = document.scrollingElement || document.documentElement;
     const scrolled = scrollingElement.scrollTop;
-    const viewportHeight = window.visualViewport?.height || window.innerHeight;
-    const baseMaxScroll = Math.max(0, scrollingElement.scrollHeight - scrollingElement.clientHeight);
-    const footer = document.querySelector('.footer-section');
-    let maxScroll = baseMaxScroll;
-
-    if (footer) {
-      const footerTop = footer.getBoundingClientRect().top + window.pageYOffset;
-      const footerBottom = footerTop + footer.offsetHeight;
-      maxScroll = Math.max(maxScroll, footerBottom - viewportHeight);
-    }
-
-    const atBottom = maxScroll - scrolled <= 1;
-    const normalized = maxScroll > 0 ? (atBottom ? 1 : scrolled / maxScroll) : 0;
-    const scrollPercent = normalized * 100;
-
-    // Update progress bar width
-    if (navbarProgress) {
-      const clamped = Math.min(100, Math.max(0, scrollPercent));
-      navbarProgress.style.width = `${clamped}%`;
-
-      const fadeDistance = 60;
-      const fadeIn = Math.min(1, scrolled / fadeDistance);
-      const fadeOut = Math.min(1, Math.max(0, maxScroll - scrolled) / fadeDistance);
-      navbarProgress.style.opacity = `${Math.min(fadeIn, fadeOut)}`;
-    }
-
-    // Add/remove scrolled class for navbar styling
     if (navbar) {
       navbar.classList.toggle('scrolled', scrolled > 100);
     }
@@ -104,31 +74,32 @@ function initializeNavigation() {
         if (targetElement) {
           targetElement.scrollIntoView({ behavior: 'smooth' });
         }
-        // Close mobile menu after clicking a link
         closeMobileMenu();
       }
     });
   });
 
-  // Initialize mobile menu toggle
+  // Initialize burger / overlay behavior
   initializeMobileMenu();
 }
 
 /**
  * Initialize mobile hamburger menu functionality.
- * Handles opening/closing the mobile navigation menu.
+ * Always available (desktop and mobile) because nav links live in drawer.
  */
 function initializeMobileMenu() {
   const navToggle = document.getElementById('nav-toggle');
   const navMenu = document.getElementById('nav-menu');
-  
+
   if (!navToggle || !navMenu) return;
 
-  // Create overlay element for mobile menu
-  const overlay = document.createElement('div');
-  overlay.className = 'nav-overlay';
-  overlay.id = 'nav-overlay';
-  document.body.appendChild(overlay);
+  let overlay = document.getElementById('nav-overlay');
+  if (!overlay) {
+    overlay = document.createElement('div');
+    overlay.className = 'nav-overlay';
+    overlay.id = 'nav-overlay';
+    document.body.appendChild(overlay);
+  }
 
   // Toggle menu on hamburger click
   navToggle.addEventListener('click', () => {
@@ -140,45 +111,45 @@ function initializeMobileMenu() {
     }
   });
 
-  // Close menu when clicking overlay
-  overlay.addEventListener('click', closeMobileMenu);
+  // Close on overlay click
+  overlay.addEventListener('click', () => closeMobileMenu());
 
-  // Close menu on escape key
+  // Close on Escape
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
       closeMobileMenu();
     }
   });
 
-  // Close menu on window resize to desktop size
+  // Close when resizing up to desktop widths
   window.addEventListener('resize', () => {
-    if (window.innerWidth > 768) {
+    if (window.innerWidth > 1024) {
       closeMobileMenu();
     }
   });
 }
 
 /**
- * Open the mobile navigation menu.
+ * Open the navigation drawer.
  */
 function openMobileMenu() {
   const navToggle = document.getElementById('nav-toggle');
   const navMenu = document.getElementById('nav-menu');
   const overlay = document.getElementById('nav-overlay');
-  
+
   if (navToggle) {
     navToggle.setAttribute('aria-expanded', 'true');
-    navToggle.setAttribute('aria-label', 'MenÃ¼ schlieÃŸen');
+    navToggle.setAttribute('aria-label', 'Menü schließen');
   }
   if (navMenu) navMenu.classList.add('active');
   if (overlay) overlay.classList.add('active');
-  
+
   // Prevent body scroll when menu is open
   document.body.style.overflow = 'hidden';
 }
 
 /**
- * Close the mobile navigation menu.
+ * Close the navigation drawer.
  */
 function closeMobileMenu() {
   const navToggle = document.getElementById('nav-toggle');
@@ -187,7 +158,7 @@ function closeMobileMenu() {
   
   if (navToggle) {
     navToggle.setAttribute('aria-expanded', 'false');
-    navToggle.setAttribute('aria-label', 'MenÃ¼ Ã¶ffnen');
+    navToggle.setAttribute('aria-label', 'Menü öffnen');
   }
   if (navMenu) navMenu.classList.remove('active');
   if (overlay) overlay.classList.remove('active');
@@ -357,63 +328,35 @@ function initializeLegalModals() {
       'textarea:not([disabled])',
       'select:not([disabled])',
       '[tabindex]:not([tabindex="-1"])',
-    ].join(', ');
-    return Array.from(container.querySelectorAll(focusableSelectors))
-      .filter((el) => el.offsetParent !== null);
+    ];
+    const nodes = Array.from(container.querySelectorAll(focusableSelectors.join(',')));
+    return nodes.filter((el) => el.offsetParent !== null || el === document.activeElement);
   }
 
-  /**
-   * Open a modal overlay.
-   * @param {HTMLElement} overlay - Overlay element to open
-   * @param {HTMLElement} trigger - Element that triggered the open
-   */
-  function openOverlay(overlay, trigger) {
+  const openOverlay = (overlay, trigger) => {
     if (!overlay) return;
-    
     lastActiveTrigger = trigger || null;
     overlay.classList.add('active');
     overlay.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden';
-
-    // Focus first focusable element
     const focusables = getFocusable(overlay);
-    if (focusables.length) {
-      focusables[0].focus();
-    } else {
-      overlay.setAttribute('tabindex', '-1');
-      overlay.focus();
-    }
-
-    // Attach event listeners
+    focusables[0]?.focus();
     overlay.addEventListener('keydown', trapFocus);
     document.addEventListener('keydown', handleEsc);
-  }
+  };
 
-  /**
-   * Close a modal overlay.
-   * @param {HTMLElement} overlay - Overlay element to close
-   */
-  function closeOverlay(overlay) {
+  const closeOverlay = (overlay) => {
     if (!overlay) return;
-    
     overlay.classList.remove('active');
     overlay.setAttribute('aria-hidden', 'true');
-    document.body.style.overflow = '';
-
-    // Remove event listeners
     overlay.removeEventListener('keydown', trapFocus);
     document.removeEventListener('keydown', handleEsc);
 
-    // Restore focus to trigger
     if (lastActiveTrigger?.focus) {
       lastActiveTrigger.focus();
     }
     lastActiveTrigger = null;
-  }
+  };
 
-  /**
-   * Handle Escape key to close modal.
-   */
   function handleEsc(e) {
     if (e.key === 'Escape') {
       const active = document.querySelector('.legal-overlay.active');
@@ -421,12 +364,8 @@ function initializeLegalModals() {
     }
   }
 
-  /**
-   * Trap focus within modal.
-   */
   function trapFocus(e) {
     if (e.key !== 'Tab') return;
-    
     const overlay = e.currentTarget;
     const focusables = getFocusable(overlay);
     if (!focusables.length) {
@@ -446,7 +385,6 @@ function initializeLegalModals() {
     }
   }
 
-  // Attach open handlers
   impressumLink?.addEventListener('click', (e) => {
     e.preventDefault();
     openOverlay(impressumOverlay, impressumLink);
@@ -457,7 +395,6 @@ function initializeLegalModals() {
     openOverlay(datenschutzOverlay, datenschutzLink);
   });
 
-  // Attach close handlers
   document.querySelectorAll('.close-legal').forEach((btn) => {
     btn.addEventListener('click', () => {
       const overlay = btn.closest('.legal-overlay');
@@ -465,7 +402,6 @@ function initializeLegalModals() {
     });
   });
 
-  // Close on backdrop click
   [impressumOverlay, datenschutzOverlay].forEach((overlay) => {
     if (!overlay) return;
     overlay.addEventListener('click', (e) => {
@@ -547,54 +483,6 @@ function initializeThemeToggle() {
       toggle.click();
     }
   });
-}
-
-/**
- * Auto-collapse theme pill on touch devices after interaction.
- */
-function enableThemePillAutoCollapse() {
-  const pill = document.querySelector('.theme-toggle-float');
-  if (!pill) return;
-
-  const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-  if (!isTouch) return;
-
-  let timer = null;
-
-  const collapseAfterDelay = () => {
-    clearTimeout(timer);
-    timer = setTimeout(() => pill.classList.remove('expanded'), 1000);
-  };
-
-  const expandPill = () => {
-    pill.classList.add('expanded');
-    collapseAfterDelay();
-  };
-
-  // Expand on touch anywhere on the pill
-  pill.addEventListener('touchstart', (e) => {
-    // If touching the toggle button, still expand but let the toggle handle the theme switch
-    expandPill();
-  }, { passive: true });
-
-  // Also expand on click for hybrid devices
-  pill.addEventListener('click', () => {
-    expandPill();
-  });
-
-  // Collapse immediately on blur
-  pill.addEventListener('blur', () => {
-    pill.classList.remove('expanded');
-    clearTimeout(timer);
-  }, true);
-
-  // Collapse when touching outside
-  document.addEventListener('touchstart', (e) => {
-    if (!pill.contains(e.target)) {
-      pill.classList.remove('expanded');
-      clearTimeout(timer);
-    }
-  }, { passive: true });
 }
 
 
@@ -839,16 +727,4 @@ function enablePerformanceOptimizations() {
   document.addEventListener('visibilitychange', () => {
     document.body.style.animationPlayState = document.hidden ? 'paused' : 'running';
   });
-
-  // Remove focus from theme pill after interaction
-  const pill = document.querySelector('.theme-toggle-float');
-  if (pill) {
-    pill.addEventListener('focusout', () => pill.blur());
-    
-    document.addEventListener('mousedown', (e) => {
-      if (!pill.contains(e.target)) {
-        pill.blur();
-      }
-    });
-  }
 }
