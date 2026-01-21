@@ -168,7 +168,7 @@ function openMobileMenu() {
   
   if (navToggle) {
     navToggle.setAttribute('aria-expanded', 'true');
-    navToggle.setAttribute('aria-label', 'Menü schließen');
+    navToggle.setAttribute('aria-label', 'MenÃ¼ schlieÃŸen');
   }
   if (navMenu) navMenu.classList.add('active');
   if (overlay) overlay.classList.add('active');
@@ -187,7 +187,7 @@ function closeMobileMenu() {
   
   if (navToggle) {
     navToggle.setAttribute('aria-expanded', 'false');
-    navToggle.setAttribute('aria-label', 'Menü öffnen');
+    navToggle.setAttribute('aria-label', 'MenÃ¼ Ã¶ffnen');
   }
   if (navMenu) navMenu.classList.remove('active');
   if (overlay) overlay.classList.remove('active');
@@ -641,7 +641,7 @@ function initializeContactForm() {
 
     // Validate required fields
     if (!data.name || !data.email || !data.message) {
-      showStatus('Bitte füllen Sie alle Felder aus.', true);
+      showStatus('Bitte fÃ¼llen Sie alle Felder aus.', true);
       contactForm.querySelector('[name="name"]')?.focus();
       return;
     }
@@ -649,7 +649,7 @@ function initializeContactForm() {
     // Validate email format
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(data.email)) {
-      showStatus('Bitte geben Sie eine gültige E-Mail-Adresse ein.', true);
+      showStatus('Bitte geben Sie eine gÃ¼ltige E-Mail-Adresse ein.', true);
       contactForm.querySelector('[name="email"]')?.focus();
       return;
     }
@@ -684,7 +684,7 @@ function initializeContactForm() {
       const result = await response.json();
 
       if (result.ok) {
-        showStatus('Vielen Dank für Ihre Nachricht! Wir werden uns bald bei Ihnen melden.', false);
+        showStatus('Vielen Dank fÃ¼r Ihre Nachricht! Wir werden uns bald bei Ihnen melden.', false);
         contactForm.reset();
       } else {
         showStatus(result.error || 'Beim Senden ist ein Fehler aufgetreten.', true);

@@ -3,8 +3,8 @@
  * NOART. WEBSITE - MAIN STYLESHEET
  * ==========================================================================
  * 
- * Zentrale CSS-Datei für die NoArt. Website.
- * Minimalistische Galerie für 3D-Kunst mit eleganten Akzenten.
+ * Zentrale CSS-Datei fÃ¼r die NoArt. Website.
+ * Minimalistische Galerie fÃ¼r 3D-Kunst mit eleganten Akzenten.
  * 
  * INHALTSVERZEICHNIS:
  * ==========================================================================
@@ -14,7 +14,7 @@
  *    1.2 Typografie
  *    1.3 Spacing & Layout
  *    1.4 Schatten & Effekte
- *    1.5 Übergänge & Z-Index
+ *    1.5 ÃœbergÃ¤nge & Z-Index
  * 
  * 2. RESET & BASE STYLES
  *    2.1 Box-Sizing Reset
@@ -57,9 +57,9 @@
  *    8.2 Light Theme
  * 
  * 9. RESPONSIVE DESIGN
- *    9.1 Tablet (≤1024px)
- *    9.2 Mobile (≤768px)
- *    9.3 Small Mobile (≤480px)
+ *    9.1 Tablet (â‰¤1024px)
+ *    9.2 Mobile (â‰¤768px)
+ *    9.3 Small Mobile (â‰¤480px)
  * 
  * 10. ACCESSIBILITY & PREFERENCES
  *     10.1 Reduced Motion
@@ -76,7 +76,7 @@
 /* ==========================================================================
    1. DESIGN TOKENS (CSS Custom Properties)
    ==========================================================================
-   Zentrale Variablen für konsistentes Design.
+   Zentrale Variablen fÃ¼r konsistentes Design.
    ========================================================================== */
 
 /* --------------------------------------------------------------------------
@@ -84,14 +84,14 @@
    -------------------------------------------------------------------------- */
 
 :root {
-  /* Primärfarben - Light Theme Default */
+  /* PrimÃ¤rfarben - Light Theme Default */
   --color-bg: #fefdfb;
   --color-fg: #2c2c2c;
   --color-bg-elevated: #fff;
   --color-fg-muted: #5a5a5a;
   --color-border: #e8e6e3;
   
-  /* Primärfarben - Dark Theme Werte */
+  /* PrimÃ¤rfarben - Dark Theme Werte */
   --color-bg-dark: #1a1a1a;
   --color-fg-dark: #f5f5f5;
   --color-bg-elevated-dark: #2a2a2a;
@@ -107,7 +107,7 @@
   --color-accent-secondary: #c3480f;
   --color-accent-tertiary: #c56313;
   
-  /* Akzent Aliase für einfacheren Zugriff */
+  /* Akzent Aliase fÃ¼r einfacheren Zugriff */
   --color-accent-1: var(--color-accent-primary);
   --color-accent-2: var(--color-accent-secondary);
   --accent: var(--color-accent-primary);
@@ -116,7 +116,7 @@
   --accent-primary: var(--color-accent-primary);
   --orange: var(--color-accent-tertiary);
   
-  /* Dynamische Theme-Variablen (werden bei Theme-Wechsel überschrieben) */
+  /* Dynamische Theme-Variablen (werden bei Theme-Wechsel Ã¼berschrieben) */
   --bg: var(--color-bg);
   --fg: var(--color-fg);
   --bg-elevated: var(--color-bg-elevated);
@@ -141,7 +141,7 @@
 :root {
   --font-family: 'Host Grotesk', -apple-system, blinkmacsystemfont, 'Segoe UI', roboto, sans-serif;
   
-  /* Schriftgrößen */
+  /* SchriftgrÃ¶ÃŸen */
   --font-size-xs: 0.75rem;
   --font-size-sm: 0.875rem;
   --font-size-base: 1rem;
@@ -162,7 +162,7 @@
   --font-weight-bold: 700;
   --font-weight-extrabold: 800;
   
-  /* Zeilenhöhen */
+  /* ZeilenhÃ¶hen */
   --line-height-tight: 1.1;
   --line-height-snug: 1.25;
   --line-height-normal: 1.5;
@@ -207,11 +207,11 @@
 }
 
 /* --------------------------------------------------------------------------
-   1.5 Übergänge & Z-Index
+   1.5 ÃœbergÃ¤nge & Z-Index
    -------------------------------------------------------------------------- */
 
 :root {
-  /* Übergänge */
+  /* ÃœbergÃ¤nge */
   --transition-fast: 0.15s ease-out;
   --transition-base: 0.3s ease-in-out;
   --transition-slow: 0.5s ease-in-out;
@@ -287,14 +287,14 @@ body {
    2.3 Accessibility
    -------------------------------------------------------------------------- */
 
-/* Focus-Visible für Tastaturnavigation */
+/* Focus-Visible fÃ¼r Tastaturnavigation */
 *:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 2px;
   border-radius: var(--radius-sm);
 }
 
-/* Skip Link für Screen Reader */
+/* Skip Link fÃ¼r Screen Reader */
 .skip-link {
   position: absolute;
   top: -40px;
@@ -312,7 +312,7 @@ body {
   top: 6px;
 }
 
-/* Screen Reader Only (für JS-generierte Elemente) */
+/* Screen Reader Only (fÃ¼r JS-generierte Elemente) */
 .sr-only {
   position: absolute;
   width: 1px;
@@ -405,7 +405,7 @@ body {
    4.1 Intersection Observer Styles
    -------------------------------------------------------------------------- */
 
-/* Performance-Hint für animierte Elemente */
+/* Performance-Hint fÃ¼r animierte Elemente */
 [data-scroll] {
   will-change: transform, opacity;
 }
@@ -451,7 +451,7 @@ body {
   transform: translateX(0);
 }
 
-/* Stagger-Effekt für aufeinanderfolgende Elemente */
+/* Stagger-Effekt fÃ¼r aufeinanderfolgende Elemente */
 [data-scroll='fade-up'] + .section-subtitle,
 .section-title[data-scroll='fade-up'] + [data-scroll='fade-up'] {
   transition-delay: 0.12s;
@@ -557,7 +557,7 @@ body {
   background: transparent;
 }
 
-/* Hero section content - kein extra padding mehr nötig */
+/* Hero section content - kein extra padding mehr nÃ¶tig */
 .hero-section .section-content {
   padding-top: 0;
   display: flex;
@@ -640,7 +640,7 @@ body {
   position: relative;
 }
 
-/* Stagger für Content Sections */
+/* Stagger fÃ¼r Content Sections */
 .content-section:nth-child(1) { --section-delay: 0.2s; }
 .content-section:nth-child(2) { --section-delay: 0.4s; }
 .content-section:nth-child(3) { --section-delay: 0.6s; }
@@ -1978,7 +1978,7 @@ body {
    ========================================================================== */
 
 /* --------------------------------------------------------------------------
-   9.1 Tablet (≤1024px)
+   9.1 Tablet (â‰¤1024px)
    -------------------------------------------------------------------------- */
 
 @media (width <= 1024px) {
@@ -2060,7 +2060,7 @@ body {
 }
 
 /* --------------------------------------------------------------------------
-   9.2 Mobile (≤768px)
+   9.2 Mobile (â‰¤768px)
    -------------------------------------------------------------------------- */
 
 @media (width <= 768px) {
@@ -2329,7 +2329,7 @@ body {
 }
 
 /* --------------------------------------------------------------------------
-   9.3 Small Mobile (≤640px)
+   9.3 Small Mobile (â‰¤640px)
    -------------------------------------------------------------------------- */
 
 @media (width <= 640px) {
@@ -2361,7 +2361,7 @@ body {
 }
 
 /* --------------------------------------------------------------------------
-   9.4 Extra Small (≤480px)
+   9.4 Extra Small (â‰¤480px)
    -------------------------------------------------------------------------- */
 
 @media (width <= 480px) {
@@ -2432,7 +2432,7 @@ body {
 }
 
 /* --------------------------------------------------------------------------
-   9.5 Extra Extra Small (≤380px) - Small Phones like iPhone SE, Mini
+   9.5 Extra Extra Small (â‰¤380px) - Small Phones like iPhone SE, Mini
    -------------------------------------------------------------------------- */
 
 @media (width <= 380px) {
