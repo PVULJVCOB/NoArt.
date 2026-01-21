@@ -132,3 +132,15 @@
   opacity: 0.08;
 
 }
+
+/* Contact Form Dark Mode (match light mode styling) */
+[data-theme='dark'] .contact-section .contact-form .cta-button,
+[data-theme='dark'] .contact-section .contact-form .cta-button.secondary {
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+  color: var(--color-bg);
+  border: 1px solid color-mix(in srgb, var(--accent) 70%, transparent 30%);
+}
+
+[data-theme='dark'] .contact-section .contact-form .cta-button:hover::after {
+  opacity: 0.08;
+}
