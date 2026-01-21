@@ -134,4 +134,5 @@
 
 [data-theme='light'] .contact-section .contact-form .cta-button:hover::after {
   opacity: 0.08;
+
 }

@@ -53,6 +53,12 @@ function initializeParallax() {
   if (prefersReducedMotion) return;
 
   let ticking = false;
+  let currentTransforms = new Map();
+  
+  // Detect if device is mobile/touch for smoother handling
+  const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) 
+    || window.matchMedia('(max-width: 768px)').matches
+    || 'ontouchstart' in window;
 
   function computeRate(type, distanceFromCenter) {
     const base = distanceFromCenter / window.innerHeight;
@@ -64,8 +70,14 @@ function initializeParallax() {
     return base * (rates[type] || -40);
   }
 
+  function lerp(start, end, factor) {
+    return start + (end - start) * factor;
+  }
+
   function updateParallax() {
     const parallaxElements = document.querySelectorAll('[data-scroll*="parallax"]');
+    // Smoother interpolation on mobile for less jerky scrolling
+    const smoothFactor = isMobile ? 0.12 : 0.1;
 
     parallaxElements.forEach((el) => {
       const rect = el.getBoundingClientRect();
@@ -75,20 +87,45 @@ function initializeParallax() {
       const viewportCenter = window.innerHeight / 2;
       const distance = elCenter - viewportCenter;
       const type = el.getAttribute('data-scroll');
-      const rate = computeRate(type, distance);
+      const targetRate = computeRate(type, distance);
 
-      el.style.transform = `translate3d(0, ${rate}px, 0)`;
+      // Get current transform value or default to 0
+      const currentRate = currentTransforms.get(el) || 0;
+      // Smooth interpolation for less jerky movement
+      const newRate = lerp(currentRate, targetRate, smoothFactor);
+      currentTransforms.set(el, newRate);
+
+      // Use will-change and GPU acceleration
+      el.style.willChange = 'transform';
+      el.style.transform = `translate3d(0, ${newRate}px, 0)`;
     });
 
     ticking = false;
+    lastScrollY = window.scrollY;
   }
 
-  window.addEventListener('scroll', () => {
+  // Use passive scroll listener with throttling
+  let scrollTimeout;
+  function onScroll() {
     if (!ticking) {
-      requestAnimationFrame(updateParallax);
+      // On mobile, use smoother animation loop
+      if (isMobile) {
+        cancelAnimationFrame(scrollTimeout);
+        scrollTimeout = requestAnimationFrame(() => {
+          requestAnimationFrame(updateParallax);
+        });
+      } else {
+        requestAnimationFrame(updateParallax);
+      }
       ticking = true;
     }
-  }, { passive: true });
+  }
 
-  window.addEventListener('resize', updateParallax, { passive: true });
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', () => {
+    requestAnimationFrame(updateParallax);
+  }, { passive: true });
+  
+  // Initial update
+  requestAnimationFrame(updateParallax);
 }

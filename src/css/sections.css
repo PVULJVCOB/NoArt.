@@ -134,6 +134,10 @@
   padding: var(--space-6xl) var(--space-xl);
   text-align: center;
   background: var(--bg);
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow-x: hidden;
 }
 
 .gallery-intro.scroll-init {

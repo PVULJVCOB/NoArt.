@@ -72,12 +72,36 @@
    -------------------------------------------------------------------------- */
 
 @media (width <= 768px) {
+  /* Prevent horizontal scroll on mobile */
+  html, body {
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  /* Hero section - true 100dvh on mobile */
+  .section.hero-section {
+    min-height: 100dvh;
+    min-height: -webkit-fill-available;
+    height: 100dvh;
+    height: -webkit-fill-available;
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
   .section.hero-section .section-content {
     padding: 0;
+    min-height: 100dvh;
+    min-height: -webkit-fill-available;
   }
 
   .section-content {
     padding: var(--space-3xl) var(--space-md);
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
   }
 
   .section-title {
@@ -88,6 +112,9 @@
   .content-section {
     padding: var(--space-2xl) var(--space-md);
     gap: var(--space-lg);
+    max-width: 100%;
+    width: 100%;
+    box-sizing: border-box;
   }
 
   .content-section,
