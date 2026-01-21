@@ -1,0 +1,476 @@
+/**
+ * ==========================================================================
+ * NOART. WEBSITE - RESPONSIVE & PREFERENCES
+ * ==========================================================================
+ *
+ * Media Queries fuer Tablet/Mobile, sowie System-Praefenzen.
+ * ==========================================================================
+ */
+
+/* ========================================================================== 
+   9. RESPONSIVE DESIGN
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   9.1 Tablet (<=1024px)
+   -------------------------------------------------------------------------- */
+
+@media (width <= 1024px) {
+  /* Navigation - Tablet */
+  .navbar {
+    top: var(--space-md);
+    width: 92%;
+    padding: var(--space-sm) var(--space-lg);
+  }
+}
+
+@media (width <= 1024px) {
+  /* About Grid */
+  .about-content {
+    grid-template-columns: 1fr;
+    gap: var(--space-2xl);
+  }
+
+  .about-stats {
+    justify-content: center;
+  }
+
+  .about-stats .stat-item {
+    width: clamp(100px, 26vw, 140px);
+    min-width: 100px;
+    padding: var(--space-md);
+    aspect-ratio: 1 / 1;
+  }
+
+  .stat-number {
+    font-size: clamp(1.6rem, 5.2vw, 2.6rem);
+    line-height: 1.02;
+  }
+
+  /* Contact & Location Grid */
+  .contact-content,
+  .location-content {
+    grid-template-columns: 1fr;
+    gap: var(--space-2xl);
+  }
+
+  /* Footer Grid */
+  .footer-content {
+    grid-template-columns: 1fr;
+    gap: var(--space-2xl);
+  }
+
+  /* Desktop Portrait Image */
+  .placeholder-about-image {
+    max-width: 60vh;
+    width: 100%;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   9.2 Mobile (<=768px)
+   -------------------------------------------------------------------------- */
+
+@media (width <= 768px) {
+  .section.hero-section .section-content {
+    padding: 0;
+  }
+
+  .section-content {
+    padding: var(--space-3xl) var(--space-md);
+  }
+
+  .section-title {
+    font-size: var(--font-size-4xl);
+  }
+
+  /* Content Sections */
+  .content-section {
+    padding: var(--space-2xl) var(--space-md);
+    gap: var(--space-lg);
+  }
+
+  .content-section,
+  .content-section.reversed {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-lg);
+  }
+
+  .content-section__text {
+    max-width: 100%;
+    padding: var(--space-md);
+    text-align: left;
+  }
+
+  .content-section__text h2,
+  .content-section__text p {
+    text-align: left;
+  }
+
+  .content-section__image {
+    width: 100%;
+    max-width: 100%;
+    aspect-ratio: auto;
+    min-height: 220px;
+  }
+
+  .content-section__image img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+
+  /* Map */
+  .map-embed {
+    max-height: 320px;
+  }
+
+  /* About Stats */
+  .about-stats {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 8px;
+    gap: var(--space-md);
+  }
+
+  .about-stats::-webkit-scrollbar { 
+    height: 8px; 
+  }
+  
+  .about-stats::-webkit-scrollbar-thumb { 
+    background: rgba(255,255,255,0.06); 
+    border-radius: 8px; 
+  }
+
+  /* Mobile Navigation - Hamburger Menu */
+  .navbar {
+    top: var(--space-sm);
+    width: 94%;
+    padding: var(--space-sm) var(--space-md);
+  }
+
+  /* About Section Mobile Fixes */
+  .section.about-section {
+    padding: var(--space-4xl) var(--space-md);
+  }
+
+  .section.about-section .section-content {
+    width: 100%;
+    max-width: 100%;
+    padding: 0;
+  }
+
+  .about-content {
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+    max-width: 100%;
+    width: 100%;
+    justify-items: center;
+  }
+
+  .about-text {
+    order: 1;
+    text-align: center;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .about-text .section-title {
+    font-size: var(--font-size-3xl);
+    text-align: center;
+    width: 100%;
+  }
+
+  .text-content {
+    width: 100%;
+    max-width: 500px;
+  }
+
+  .text-content p {
+    font-size: var(--font-size-base);
+    text-align: center;
+  }
+
+  .about-visual {
+    order: 2;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .about-visual .parallax-wrapper {
+    width: 100%;
+    max-width: 350px;
+  }
+
+  .placeholder-about-image {
+    max-width: 100%;
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    margin: 0 auto;
+  }
+
+  .about-stats {
+    flex-wrap: nowrap;
+    justify-content: center;
+    gap: var(--space-sm);
+    width: 100%;
+  }
+
+  .about-stats .stat-item {
+    flex: 0 0 auto;
+    width: clamp(90px, 28vw, 120px);
+    min-width: 90px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   9.3 Small Mobile (<=640px)
+   -------------------------------------------------------------------------- */
+
+@media (width <= 640px) {
+  /* Hero */
+  .hero-line.hero-main {
+    font-size: clamp(2.5rem, 9.5vw, 6rem);
+  }
+
+  /* About Stats */
+  .about-stats {
+    flex-direction: row;
+    gap: var(--space-md);
+  }
+
+  /* Legal Overlay */
+  .legal-content {
+    margin: var(--space-lg) 0;
+    padding: var(--space-xl);
+    max-height: 85vh;
+  }
+
+  .legal-overlay {
+    padding: var(--space-md);
+  }
+
+  .legal-overlay.active {
+    padding: var(--space-md);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   9.4 Extra Small (<=480px)
+   -------------------------------------------------------------------------- */
+
+@media (width <= 480px) {
+  .navbar {
+    top: var(--space-xs);
+    width: 95%;
+    padding: var(--space-xs) var(--space-sm);
+  }
+
+  .nav-logo {
+    font-size: var(--font-size-2xl);
+  }
+
+  .nav-menu {
+    width: 100%;
+    padding: var(--space-2xl) var(--space-xl);
+  }
+
+  .nav-menu .nav-link {
+    font-size: var(--font-size-lg);
+    padding: var(--space-sm) var(--space-md);
+  }
+
+  /* About Section Extra Small */
+  .section.about-section {
+    padding: var(--space-3xl) var(--space-sm);
+  }
+
+  .about-text .section-title {
+    font-size: var(--font-size-2xl);
+  }
+
+  .text-content {
+    max-width: 100%;
+    padding: 0 var(--space-xs);
+  }
+
+  .text-content p {
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-normal);
+    text-align: center;
+  }
+
+  .about-visual .parallax-wrapper {
+    max-width: 280px;
+  }
+
+  .about-stats .stat-item {
+    width: clamp(80px, 30vw, 110px);
+    min-width: 80px;
+    padding: var(--space-sm);
+  }
+
+  .stat-number {
+    font-size: clamp(1.2rem, 7vw, 2rem);
+    line-height: 1.02;
+  }
+
+  .stat-label {
+    font-size: var(--font-size-xs);
+  }
+
+  .placeholder-about-image {
+    max-width: 100%;
+    width: 100%;
+    aspect-ratio: 3 / 4;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   9.5 Extra Extra Small (<=380px) - Small Phones wie iPhone SE, Mini
+   -------------------------------------------------------------------------- */
+
+@media (width <= 380px) {
+  /* Navbar - sehr kompakt */
+  .navbar {
+    top: var(--space-xs);
+    width: 96%;
+    padding: var(--space-xs) var(--space-sm);
+  }
+
+  .nav-logo {
+    font-size: var(--font-size-xl);
+  }
+
+  .nav-toggle {
+    width: 40px;
+    height: 40px;
+    padding: 6px;
+  }
+
+  .hamburger-line {
+    width: 20px;
+  }
+
+  /* Hero */
+  .hero-line.hero-main {
+    font-size: clamp(2rem, 15vw, 4rem);
+  }
+
+  .scroll-indicator {
+    font-size: var(--font-size-xs);
+  }
+
+  /* Section Content */
+  .section-content {
+    padding: var(--space-2xl) var(--space-sm);
+  }
+
+  .section-title {
+    font-size: var(--font-size-2xl);
+  }
+
+  /* Content Sections */
+  .content-section {
+    padding: var(--space-lg) var(--space-sm);
+  }
+
+  .content-section__text h2 {
+    font-size: var(--font-size-xl);
+  }
+
+  .content-section__text p {
+    font-size: var(--font-size-sm);
+  }
+
+  /* About */
+  .about-text .section-title {
+    font-size: var(--font-size-xl);
+  }
+
+  .text-content p {
+    font-size: var(--font-size-xs);
+  }
+
+  .about-stats .stat-item {
+    width: clamp(70px, 28vw, 90px);
+    min-width: 70px;
+    padding: var(--space-xs);
+  }
+
+  .stat-number {
+    font-size: clamp(1rem, 6vw, 1.5rem);
+  }
+
+  .stat-label {
+    font-size: 0.65rem;
+  }
+
+  /* Contact & Forms */
+  .cta-button {
+    padding: var(--space-sm) var(--space-md);
+    font-size: var(--font-size-sm);
+  }
+
+  /* Footer */
+  .footer-section {
+    padding: var(--space-lg) var(--space-sm);
+  }
+
+}
+
+
+/* ========================================================================== 
+   10. ACCESSIBILITY & PREFERENCES
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   10.1 System Color Scheme (Fallback)
+   -------------------------------------------------------------------------- */
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: var(--color-bg-dark);
+    --fg: var(--color-fg-dark);
+    --bg-elevated: var(--color-bg-elevated-dark);
+    --fg-muted: var(--color-fg-muted-dark);
+    --border: var(--color-border-dark);
+  }
+
+  .footer-section::before {
+    background: none;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   10.2 Reduced Motion
+   -------------------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   10.3 Forced Colors (High Contrast Mode)
+   -------------------------------------------------------------------------- */
+
+@media (forced-colors: active) {
+  :root {
+    --bg: #000;
+    --fg: #fff;
+    --fg-muted: #ccc;
+    --border: #666;
+    --accent: #ff0;
+  }
+}

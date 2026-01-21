@@ -1,0 +1,137 @@
+/**
+ * ==========================================================================
+ * NOART. WEBSITE - THEMES
+ * ==========================================================================
+ *
+ * Theme-Overrides fuer Dark/Light und themenspezifische Anpassungen.
+ * ==========================================================================
+ */
+
+/* ========================================================================== 
+   8. THEME OVERRIDES
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   8.1 Dark Theme
+   -------------------------------------------------------------------------- */
+
+[data-theme='dark'] {
+  --bg: var(--color-bg-dark);
+  --fg: var(--color-fg-dark);
+  --bg-elevated: var(--color-bg-elevated-dark);
+  --fg-muted: var(--color-fg-muted-dark);
+  --border: var(--color-border-dark);
+  --hero-overlay-dark: rgb(0 0 0 / 72%);
+  --hero-video-brightness: 0.6;
+}
+
+[data-theme='dark'] .placeholder-about-image {
+  background: var(--bg-elevated);
+  color: var(--fg-muted);
+}
+
+[data-theme='dark'] .legal-overlay {
+  background: rgb(43 43 43 / 95%);
+  color: var(--color-fg-dark);
+}
+
+[data-theme='dark'] .footer-section::before {
+  background: none;
+}
+
+/* --------------------------------------------------------------------------
+   8.2 Light Theme
+   -------------------------------------------------------------------------- */
+
+[data-theme='light'] .hero-section {
+  background: var(--bg);
+}
+
+[data-theme='light'] .hero-text-container {
+  animation: 
+    hero-fade-in 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.8s forwards,
+    hero-float 12s ease-in-out 2s infinite;
+}
+
+[data-theme='light'] .hero-title,
+[data-theme='light'] .hero-line {
+  text-shadow: none;
+}
+
+[data-theme='light'] .hero-title {
+  color: var(--fg);
+}
+
+[data-theme='light'] .hero-video-container::after {
+  background: var(--hero-overlay-light);
+}
+
+[data-theme='light'] .footer-section {
+  background: var(--bg);
+}
+
+[data-theme='light'] .footer-section::before {
+  background: none;
+}
+
+[data-theme='light'] .footer-section .section-content {
+  color: var(--fg);
+}
+
+[data-theme='light'] .footer-column a,
+[data-theme='light'] .footer-brand p,
+[data-theme='light'] .footer-bottom {
+  color: var(--fg-muted);
+}
+
+[data-theme='light'] .stat-item {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  color: var(--fg);
+}
+
+[data-theme='light'] .stat-item:hover {
+  background: color-mix(in srgb, var(--bg-elevated) 90%, var(--accent) 10%);
+}
+
+[data-theme='light'] .stat-item .stat-label {
+  color: var(--fg-muted);
+}
+
+[data-theme='light'] .theme-desc {
+  color: var(--fg-muted);
+}
+
+[data-theme='light'] .theme-toggle .track {
+  background: linear-gradient(
+    90deg,
+    var(--color-accent-secondary),
+    color-mix(in srgb, var(--color-accent-secondary) 80%, #fff 20%)
+  );
+}
+
+[data-theme='light'] .theme-toggle[aria-checked='true'] .track {
+  background: linear-gradient(90deg, var(--color-accent-secondary), var(--accent));
+}
+
+[data-theme='light'] .legal-overlay {
+  background: rgb(254 253 251 / 97%);
+  color: var(--color-fg);
+}
+
+[data-theme='light'] .legal-content {
+  background: var(--bg-elevated);
+  color: var(--fg);
+}
+
+/* Contact Form Light Mode */
+[data-theme='light'] .contact-section .contact-form .cta-button,
+[data-theme='light'] .contact-section .contact-form .cta-button.secondary {
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+  color: var(--color-bg);
+  border: 1px solid color-mix(in srgb, var(--accent) 70%, transparent 30%);
+}
+
+[data-theme='light'] .contact-section .contact-form .cta-button:hover::after {
+  opacity: 0.08;
+}

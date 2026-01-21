@@ -1,0 +1,325 @@
+/**
+ * ==========================================================================
+ * NOART. WEBSITE - BASE & TOKENS
+ * ==========================================================================
+ *
+ * Enthaelt Design Tokens, Reset, Basis-Styles, Accessibility und
+ * globale Animationen/Keyframes.
+ * ==========================================================================
+ */
+
+/* ========================================================================== 
+   1. DESIGN TOKENS (CSS Custom Properties)
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+  1.1 Farben
+   -------------------------------------------------------------------------- */
+
+:root {
+  /* Primaerfarben - Light Theme Default */
+  --color-bg: #f5f5f5;
+  --color-fg: #2c2c2c;
+  --color-bg-elevated: #ffffff;
+  --color-fg-muted: #6b6b6b;
+  --color-border: #e0e0e0;
+  
+  /* Primaerfarben - Dark Theme Werte */
+  --color-bg-dark: #1f1f21;
+  --color-fg-dark: #f5f5f5;
+  --color-bg-elevated-dark: #2a2a2c;
+  --color-fg-muted-dark: #adadad;
+  --color-border-dark: #2f2f31;
+  
+  /* Hero Overlays */
+  --hero-overlay-dark: rgb(0 0 0 / 60%);
+  --hero-overlay-light: rgb(255 255 255 / 10%);
+  
+  /* Akzentfarben - Orange Palette */
+  --color-accent-primary: #e07714;
+  --color-accent-secondary: #c3480f;
+  --color-accent-tertiary: #c56313;
+  
+  /* Akzent Aliase fuer einfacheren Zugriff */
+  --color-accent-1: var(--color-accent-primary);
+  --color-accent-2: var(--color-accent-secondary);
+  --accent: var(--color-accent-primary);
+  --accent-hover: #cd5e2a;
+  --accent-secondary: var(--color-accent-secondary);
+  --accent-primary: var(--color-accent-primary);
+  --orange: var(--color-accent-tertiary);
+  
+  /* Dynamische Theme-Variablen (werden bei Theme-Wechsel ueberschrieben) */
+  --bg: var(--color-bg);
+  --fg: var(--color-fg);
+  --bg-elevated: var(--color-bg-elevated);
+  --fg-muted: var(--color-fg-muted);
+  --border: var(--color-border);
+  
+  /* Utility Farben */
+  --color-dark: #1a1a1a;
+  --color-dark-lighter: #2a2a2a;
+  --color-medium: #bfbfbf;
+  --bg-muted: rgba(121, 121, 121, 0.1);
+  
+  /* Hero Video Filter */
+  --hero-video-brightness: 0.7;
+  --hero-video-contrast: 0.95;
+}
+
+/* --------------------------------------------------------------------------
+   1.2 Typografie
+   -------------------------------------------------------------------------- */
+
+:root {
+  --font-family: 'Host Grotesk', -apple-system, blinkmacsystemfont, 'Segoe UI', roboto, sans-serif;
+  
+  /* Schriftgroessen */
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 1.875rem;
+  --font-size-4xl: 2.25rem;
+  --font-size-5xl: 3rem;
+  --font-size-6xl: 3.75rem;
+  --font-size-hero: 20vw;
+  
+  /* Schriftgewichte */
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+  
+  /* Zeilenhoehen */
+  --line-height-tight: 1.1;
+  --line-height-snug: 1.25;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.75;
+}
+
+/* --------------------------------------------------------------------------
+   1.3 Spacing & Layout
+   -------------------------------------------------------------------------- */
+
+:root {
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+  --space-3xl: 4rem;
+  --space-4xl: 6rem;
+  --space-5xl: 8rem;
+  --space-6xl: 10rem;
+  
+  /* Border Radius */
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
+  --radius-full: 9999px;
+
+  /* Safe-area Insets fuer iOS Safari (Dynamic Island / Notch) */
+  --safe-area-top: env(safe-area-inset-top, 0px);
+  --safe-area-right: env(safe-area-inset-right, 0px);
+  --safe-area-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-area-left: env(safe-area-inset-left, 0px);
+}
+
+/* --------------------------------------------------------------------------
+   1.4 Schatten & Effekte
+   -------------------------------------------------------------------------- */
+
+:root {
+  --shadow-sm: none;
+  --shadow-md: none;
+  --shadow-lg: none;
+  --shadow-xl: none;
+  --shadow-2xl: none;
+}
+
+/* --------------------------------------------------------------------------
+  1.5 Uebergaenge & Z-Index
+   -------------------------------------------------------------------------- */
+
+:root {
+  /* Uebergaenge */
+  --transition-fast: 0.15s ease-out;
+  --transition-base: 0.3s ease-in-out;
+  --transition-slow: 0.5s ease-in-out;
+  
+  /* Z-Index Skala */
+  --z-background: -1;
+  --z-content: 1;
+  --z-elevated: 10;
+  --z-navigation: 10;
+  --z-overlay: 100;
+  --z-modal: 200;
+}
+
+/* ========================================================================== 
+   2. RESET & BASE STYLES
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   2.1 Box-Sizing Reset
+   -------------------------------------------------------------------------- */
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Globale Transition Timing Function */
+* {
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* --------------------------------------------------------------------------
+   2.2 HTML & Body
+   -------------------------------------------------------------------------- */
+
+html,
+body {
+  width: 100%;
+  min-height: 100%;
+  min-height: 100dvh;
+  height: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  margin: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  text-rendering: optimizelegibility;
+}
+
+body {
+  font-family: var(--font-family);
+  font-weight: var(--font-weight-normal);
+  line-height: var(--line-height-normal);
+  color: var(--fg);
+  background-color: var(--bg);
+  min-height: 100dvh;
+  margin: 0;
+  padding: 0;
+  background-attachment: fixed;
+  -webkit-text-size-adjust: 100%;
+  position: relative;
+  transition: background-color var(--transition-base), color var(--transition-base);
+}
+
+/* --------------------------------------------------------------------------
+   2.3 Accessibility
+   -------------------------------------------------------------------------- */
+
+/* Focus-Visible fuer Tastaturnavigation */
+*:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+/* Skip Link fuer Screen Reader */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 6px;
+  z-index: 1000;
+  padding: 8px 10px;
+  background: #000;
+  color: #fff;
+  text-decoration: none;
+  border-radius: var(--radius-sm);
+  font-weight: var(--font-weight-medium);
+}
+
+.skip-link:focus {
+  top: 6px;
+}
+
+/* Screen Reader Only (fuer JS-generierte Elemente) */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ========================================================================== 
+   3. ANIMATIONS & KEYFRAMES
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   3.1 Hero Animationen
+   -------------------------------------------------------------------------- */
+
+@keyframes hero-fade-in { 
+  from { 
+    opacity: 0; 
+    transform: translateY(30px); 
+  } 
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
+  } 
+}
+
+@keyframes hero-float { 
+  0%, 100% { 
+    transform: translateY(0); 
+  } 
+  50% { 
+    transform: translateY(-8px); 
+  } 
+}
+
+@keyframes hero-line-in { 
+  from { 
+    opacity: 0; 
+    transform: translateY(60px); 
+  } 
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
+  } 
+}
+
+/* --------------------------------------------------------------------------
+   3.3 UI Animationen
+   -------------------------------------------------------------------------- */
+
+@keyframes indicator-float { 
+  0%, 100% { 
+    transform: translateX(-50%) translateY(0); 
+  } 
+  50% { 
+    transform: translateX(-50%) translateY(-5px); 
+  } 
+}
+
+@keyframes scroll-pulse { 
+  0%, 100% { 
+    opacity: 0.5; 
+  } 
+  50% { 
+    opacity: 1; 
+  } 
+}
