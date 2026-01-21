@@ -156,7 +156,8 @@
     left: 0;
     right: 0;
     width: 100%;
-    height: calc(100lvh + var(--safe-area-top) + var(--safe-area-bottom));
+    height: calc(100vh + var(--safe-area-top) + var(--safe-area-bottom));
+    height: calc(100dvh + var(--safe-area-top) + var(--safe-area-bottom));
     margin: 0;
     margin-top: calc(-1 * var(--safe-area-top));
     margin-bottom: calc(-1 * var(--safe-area-bottom));
